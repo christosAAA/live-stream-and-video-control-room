@@ -1,8 +1,8 @@
-let currentUserId:string
+let currentUserId: string
 
-export const currentUser = (userId:string) => {
-    currentUserId = userId
-    return userId
+export const currentUser = (userId: string) => {
+  currentUserId = userId
+  return userId
 }
 
-export {currentUserId}
+export { currentUserId }

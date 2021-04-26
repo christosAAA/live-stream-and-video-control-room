@@ -1,6 +1,5 @@
 import express from "express";
 import upload from "express-fileupload";
-import path from "path";
 import fs from "fs";
 import userAuth from "./userAuth.js";
 import { readFile, createFullVideoObj } from "./utils.js";
@@ -86,17 +85,20 @@ app.post("/delete_video", userAuth, deleteVideo, async () => {
   io.emit("fullVideoList", await createFullVideoObj());
 });
 
+//
 app.post("/upload_video_file", userAuth, uploadVideoFile, async () => {
   io.emit("fullVideoList", await createFullVideoObj());
 });
+//
 
 app.post("/add_live_stream_link", userAuth, addLiveStreamLink, async () => {
   io.emit("fullVideoList", await createFullVideoObj());
 });
 
+// watch mounted stream folder for the live stream file 
 const watchStreamFolder = () => {
   fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
-    console.log("WATCH STREAM FOLDER", eventType.dev);
+    // console.log("WATCH STREAM FOLDER", eventType.dev);
     let liveStream = false;
     if (eventType.dev !== 0) {
       liveStream = true
@@ -107,7 +109,9 @@ const watchStreamFolder = () => {
 watchStreamFolder()
 
 server.listen(port, console.log(`running at ${port}`));
-// server.listen(80, console.log("running at 80"));
+
+
+
 
 //userDetails.json//
 // {

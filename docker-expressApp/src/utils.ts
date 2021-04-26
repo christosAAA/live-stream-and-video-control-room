@@ -69,7 +69,6 @@ export const passwordValidation: Function = async (
 
 //
 export const saveFile = async (file: string, data: any) => {
-  console.log('saving file')
   fs.writeFile(file, data, 'utf8', (err) => {
     if (err) return console.log('error')
     console.log('saved')
@@ -100,7 +99,6 @@ export const createFullVideoObj = async () => {
   const videoFiles = await readFolder()
   const streamLinks = await readStreamFile()
   const fullList = { streams: streamLinks, videos: videoFiles }
-  console.log('full list', fullList)
   return fullList
 }
 
@@ -117,12 +115,8 @@ export const inputStreamLinkValidation = (
     }
   })
   Object.values(streamFile.streams.fromUser).forEach((item, key) => {
-    console.log('stream from user', item, Object.values(userStreamData)[0])
-    if (
-      item === Object.values(userStreamData)[0] ||
-      Object.values(userStreamData)[0] ===
-        'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8'
-    ) {
+    // console.log('stream from user', item, Object.values(userStreamData)[0])
+    if (item === Object.values(userStreamData)[0]) {
       console.log('link already exists')
       result = false
     }
@@ -135,10 +129,10 @@ export const inputStreamLinkValidation = (
 export const checkFileTypeM3u8 = (videoInputLink: string) => {
   const videoTypeM3u8 = videoInputLink.endsWith('.m3u8')
   if (videoTypeM3u8) {
-    console.log('stream')
+    console.log('delete stream')
     return true
   } else {
-    console.log('video')
+    console.log('delete video')
     return false
   }
 }
