@@ -34,12 +34,12 @@ export default function ChangePasswordNamePage() {
   };
 
   const loginValidation = async (loginUserData: LoginFormData) => {
-    const response = await request("post", "change_user_details", loginUserData);
+    const response = await request("post", "/change_user_details", loginUserData);
     setloginMessageClassName(`${classes.loginMessage} ${classes.loginMessageVissible}`);
     console.log(response.data);
     if (response.data.message === true) {
       setLoginMessage(
-        "your user details have been updated please login again for change to take place"
+        "your user details have been updated please login again for changes to take place"
       );
     } else {
       setLoginMessage("user already exist");
