@@ -1,0 +1,9 @@
+body,
+html {
+  font-family: Inter, sans-serif !important;
+}
+.root-page,
+body,
+html {
+  height: 100%;
+}

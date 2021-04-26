@@ -1,0 +1,77 @@
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  width: 100%;
+  border: 1px dashed #adb5bd;
+  cursor: pointer;
+  margin-bottom: 24px;
+}
+
+.uploadIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0px 8px 0px 12px;
+  background-image: url("../../../../../icons/uploadGrey.svg");
+}
+
+.uploadIconBlue {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0px 8px 0px 12px;
+  background-image: url("../../../../../icons/uploadBlue.svg");
+}
+
+.crossIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0px 8px 0px 12px;
+  background-image: url("../../../../../icons/cross.svg");
+}
+
+.uploadTitle {
+  font-size: 14px;
+  display: inline-block;
+  font-weight: normal;
+  color: #6C757D;
+}
+
+.uploadButton {
+  border: none;
+  float: right;
+  height: 100%;
+  width: 90px;
+  padding: 0px;
+  color: white;
+  line-height: 20px;
+  font-size: 14px;
+  background-color: #343a40;
+}
+.uploadButton:hover {
+  background-color: #495057;
+}
+
+.loading {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0px 8px 0px 12px;
+  background-image: url("../../../../../icons/loader.svg");
+}
+
+.success {
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin: 0px 8px 0px 12px;
+  background-image: url("../../../../../icons/check.svg");
+}

@@ -1,0 +1,34 @@
+# ./docker-compose/docker-compose.yml
+version: '3'
+services:
+  backend:
+    build: ../docker-expressApp
+    image: "expressapp:1.0.0"
+    volumes: 
+      - media:/app/dist/src/uploads
+  frontend:
+    build: ../docker-reactApp
+    image: "reactapp:1.0.0"
+    volumes: 
+      - media:/usr/share/nginx/html/uploads
+      - stream:/usr/share/nginx/html/stream
+  revproxy:
+    build: ../docker-reverseProxy
+    image: "reverseproxy:1.0.0"
+  rtmp:
+    build: ../aejaa_rtmpServer
+    image: "rtmp"
+    volumes: 
+      - stream:/var/www/
+    ports:
+      - "1935:1935"
+  appproxy:
+    build: ../docker-appProxy
+    image: "appproxy"
+    ports:
+      - "80:3000"
+      - "1936:1935"
+
+volumes: 
+  media:
+  stream:

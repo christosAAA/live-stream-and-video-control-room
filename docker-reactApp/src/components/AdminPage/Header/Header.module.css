@@ -1,0 +1,85 @@
+.header {
+  width: 100%;
+  height: 36px;
+  background-color: #343a40;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.centerContainer {
+  width: 1120px;
+  height:100%;
+  margin: 0 auto;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.basicFlex {
+  display: flex;
+  align-items: center;
+  height:100%;
+}
+
+.liveIndicator:before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ff4d20;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.liveIndicator {
+  color: white;
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  margin-right: 16px;
+}
+
+.headerText {
+    color: white;
+    font-size: 12px;
+}
+
+.spaceFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.livePageButton {
+    display: flex;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #FF4D20;
+    padding: 0 16px;
+    height: 100%;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.livePageButton:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #FF6A44;
+}
+
+.cameraIcon {
+display: block;
+width: 24px;
+height: 24px;
+margin-right: 4px;
+background-image: url("../../../icons/video.svg");
+}

@@ -1,0 +1,48 @@
+.accountSettingsButton {
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  margin-bottom: 16px;
+  border: 1px solid #212529;
+  padding: 0 28px 0 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #212529;
+}
+
+.accountSettingsButton:hover {
+  background-color: #e9ecef;
+}
+
+.lock {
+  display: inline-block;
+  color: black;
+  height: 24px;
+  width: 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+  background-image: url("../../../../../icons/lock.svg");
+}
+.arrowRight {
+  display: inline-block;
+  color: black;
+  height: 24px;
+  width: 24px;
+
+  background-image: url("../../../../../icons/arrowRight.svg");
+}
+
+.userAdmin {
+  display: inline-block;
+  color: black;
+  height: 24px;
+  width: 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+  background-image: url("../../../../../icons/userAdmin.svg");
+}

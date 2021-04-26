@@ -1,0 +1,22 @@
+.centerContainer {
+  width: 1120px;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.videoPlayer {
+  width: auto;
+}
+
+.videoWrapper > div {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.videoLibaryTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0;
+}

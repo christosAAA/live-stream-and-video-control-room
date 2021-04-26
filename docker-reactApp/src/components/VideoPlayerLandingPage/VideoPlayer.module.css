@@ -1,0 +1,55 @@
+.videoPage {
+  background: linear-gradient(90deg, #161122 21px, transparent 1%) center,
+    linear-gradient(#161122 21px, transparent 1%) center, #a799cc;
+    background-size: 22px 22px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoContainer {
+  position: relative;
+  flex-direction: column;
+}
+
+.videoPlayer {
+  width: 960px !important;
+  height: 540px !important;
+  margin-bottom: 32px;
+
+}
+.liveLabel:before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ff4d20;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.liveLabel {
+  display: none;
+  align-items: center;
+  background-color: white;
+  padding: 0px 8px;
+  text-transform: uppercase;
+  position: absolute;
+  color:#212529;
+  top: 20px;
+  left: 20px;
+  height: 24px;
+}
+
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.videoTitle {
+    color: white;
+    font-size: 24px;
+}

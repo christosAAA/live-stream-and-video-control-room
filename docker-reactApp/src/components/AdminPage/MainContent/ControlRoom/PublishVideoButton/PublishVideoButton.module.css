@@ -1,0 +1,23 @@
+.publishButton {
+    border-style: none;
+    height: 56px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 16px 40px 16px 32px;
+    background: #343a40;
+  }
+  .publishButton:hover {
+    background: #495057;
+  }
+  
+  .publishIcon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-image: url("../../../../../icons/publish.svg");
+  }

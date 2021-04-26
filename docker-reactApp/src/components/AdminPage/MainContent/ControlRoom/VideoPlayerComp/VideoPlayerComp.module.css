@@ -1,0 +1,17 @@
+.videoFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.videoTitle {
+  height: 56px;
+  color: #152536;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  width: calc(100% - 216px);
+}

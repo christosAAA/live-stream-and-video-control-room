@@ -1,0 +1,33 @@
+.centerContainerAdminPage {
+  width: 1120px;
+  height:100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+}
+
+.klaketIcon {
+    display: block;
+    float: left;
+    margin-top: 12px;
+    width: 34px;
+    height: 22px;
+    margin-right: 8px;
+    background-image: url("../../../icons/klaket.svg");
+  }
+  
+  .userContainer {
+    display: flex;
+    margin-top: 15px;
+    
+  }
+  
+  .userIcon {
+    display: inline-block;
+    /* margin-top: 12px; */
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-image: url("../../../icons/profile.svg");
+  }

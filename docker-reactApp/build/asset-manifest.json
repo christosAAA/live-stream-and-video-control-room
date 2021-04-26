@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0f206e71.chunk.css",
+    "main.js": "/static/js/main.6794aea7.chunk.js",
+    "main.js.map": "/static/js/main.6794aea7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.72b5b8f8.js",
+    "runtime-main.js.map": "/static/js/runtime-main.72b5b8f8.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.b7f3a811.chunk.js": "/static/js/2.b7f3a811.chunk.js",
+    "static/js/2.b7f3a811.chunk.js.map": "/static/js/2.b7f3a811.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.0f206e71.chunk.css.map": "/static/css/main.0f206e71.chunk.css.map",
+    "static/js/2.b7f3a811.chunk.js.LICENSE.txt": "/static/js/2.b7f3a811.chunk.js.LICENSE.txt",
+    "static/media/AccountSettings.module.css": "/static/media/arrowLeft.9a9dea6a.svg",
+    "static/media/AccountSettingsNav.module.css": "/static/media/userAdmin.59ef3504.svg",
+    "static/media/UploadVideo.module.css": "/static/media/uploadGrey.fbca1d93.svg",
+    "static/media/UserList.module.css": "/static/media/delete.5569ac01.svg",
+    "static/media/NavBar.module.css": "/static/media/profile.26165d65.svg",
+    "static/media/VideoList.module.css": "/static/media/link.4739bfb2.svg",
+    "static/media/AddLiveStreamLink.module.css": "/static/media/linkOrange.72f369de.svg",
+    "static/media/AddUser.module.css": "/static/media/plus.be9beaeb.svg",
+    "static/media/PublishVideoButton.module.css": "/static/media/publish.d8481222.svg",
+    "static/media/Header.module.css": "/static/media/video.0773e491.svg",
+    "static/media/ViewersCount.module.css": "/static/media/view.d7456eb8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.72b5b8f8.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.b7f3a811.chunk.js",
+    "static/css/main.0f206e71.chunk.css",
+    "static/js/main.6794aea7.chunk.js"
+  ]
+}

@@ -1,0 +1,21 @@
+/* .tabs_Container {
+  
+} */
+
+.NavButtons {
+  border: none;
+  background-color: white;
+  margin-top: 16px;
+  margin-left: 32px;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+}
+.NavButtons:hover {
+  color: #212529;
+}
+
+.current {
+  color: #212529;
+}

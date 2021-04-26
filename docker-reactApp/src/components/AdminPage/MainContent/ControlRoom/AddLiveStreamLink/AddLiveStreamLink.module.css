@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.linkIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background-image: url("../../../../../icons/linkOrange.svg");
+}
+.linkIcon:hover {
+  cursor: pointer;
+}
+.addLiveStream {
+  font-size: 14px;
+  color: #ff4d20;
+  padding: 3px 0px;
+}
+.addLiveStream:hover {
+  cursor: pointer;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.loginTitle {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 24px;
+}
+.loginMessage {
+  display: block;
+  color: #fd4444;
+  width: 300px;
+  line-height: 28px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  margin-bottom: 28px;
+}
+
+.loginMessageVissible {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.label {
+  width: 360px;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100% !important;
+  height: 48px !important;
+  background: #ffffff !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0px !important;
+  margin-bottom: 16px !important;
+}
+
+.button {
+  width: 100%;
+  height: 48px;
+  margin-top: 24px;
+  color: white;
+  background-color: #343a40;
+  border-radius: 0px;
+  border-style: none;
+}
+
+.button:hover {
+  background-color: #495057;
+}

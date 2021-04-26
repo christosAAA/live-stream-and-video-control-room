@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  width: auto;
+  align-items: center;
+  margin: 0px;
+  margin-bottom: 24px;
+}
+
+.plus {
+  color: black;
+  height: 24px;
+  width: 24px;
+  margin-right: 8px;
+  background-image: url("../../../../../../icons/plus.svg");
+  cursor:pointer;
+}
+
+.addUser {
+  color: #ff4d20;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  margin: 0px;
+  cursor:pointer;
+}

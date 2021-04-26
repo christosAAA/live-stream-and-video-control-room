@@ -1,0 +1,39 @@
+.accountSettingsContainer {
+  width: 726px;
+  margin: 48px auto 0;
+  justify-content: center;
+}
+
+.contentContainer {
+  width: 430px;
+  margin: 48px auto 0;
+  justify-content: center;
+}
+
+.arrowLeft {
+  display: inline-block;
+  color: black;
+  height: 24px;
+  width: 24px;
+  background-image: url("../../../../icons/arrowLeft.svg");
+  cursor: pointer;
+  margin-left: 18px;
+}
+.titleContainer {
+  align-items: center;
+  margin-bottom: 32px;
+}
+.pageTitle {
+  font-size: 24px;
+  line-height: 28px;
+  margin-left: 20px;
+  margin-top: 8px;
+}
+.accountSettingsTitle {
+  font-size: 24px;
+  line-height: 28px;
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 40px;
+}
+
