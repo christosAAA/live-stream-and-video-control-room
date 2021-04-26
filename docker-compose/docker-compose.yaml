@@ -1,15 +1,16 @@
 # ./docker-compose/docker-compose.yml
-version: '3'
+version: '3.9'
 services:
   backend:
     build: ../docker-expressApp
     image: "expressapp:1.0.0"
     volumes: 
       - media:/app/dist/src/uploads
+      - stream:/app/dist/src//stream
   frontend:
     build: ../docker-reactApp
     image: "reactapp:1.0.0"
-    volumes: 
+    volumes:  
       - media:/usr/share/nginx/html/uploads
       - stream:/usr/share/nginx/html/stream
   revproxy:

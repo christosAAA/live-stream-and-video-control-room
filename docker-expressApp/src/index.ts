@@ -1,6 +1,7 @@
 import express from "express";
 import upload from "express-fileupload";
 import path from "path";
+import fs from "fs";
 import userAuth from "./userAuth.js";
 import { readFile, createFullVideoObj } from "./utils.js";
 import {
@@ -92,6 +93,18 @@ app.post("/upload_video_file", userAuth, uploadVideoFile, async () => {
 app.post("/add_live_stream_link", userAuth, addLiveStreamLink, async () => {
   io.emit("fullVideoList", await createFullVideoObj());
 });
+
+const watchStreamFolder = () => {
+  fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
+    console.log("WATCH STREAM FOLDER", eventType.dev);
+    let liveStream = false;
+    if (eventType.dev !== 0) {
+      liveStream = true
+    }
+    io.emit("liveStreamState", liveStream);
+  })
+}
+watchStreamFolder()
 
 server.listen(port, console.log(`running at ${port}`));
 // server.listen(80, console.log("running at 80"));

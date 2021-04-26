@@ -41,7 +41,7 @@ export default function AddLiveStreamLink() {
   }
   return (
     <>
-      <Container className={classes.container} onClick={handleShow}>
+      <Container className={classes.container} onClick={handleShow} >
         <i className={classes.linkIcon} />
         <h1 className={classes.addLiveStream}>Add a live stream link</h1>
       </Container>
