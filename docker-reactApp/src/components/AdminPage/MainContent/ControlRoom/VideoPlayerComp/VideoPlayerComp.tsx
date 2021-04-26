@@ -15,7 +15,6 @@ export default function VideoPlayerComp() {
 
   const getLiveStreamState = () => {
     socket.on('liveStreamState', async (data: boolean) => {
-      console.log('liveStreamState', data)
       setLiveStream(data)
     })
   }

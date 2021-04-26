@@ -1,27 +1,27 @@
-import React from "react";
-import { onClickTabButton } from "./utils";
-import "./tabs.css";
+import React from 'react'
+import { onClickTabButton } from './utils'
+import './tabs.css'
 
-type Props = { id: string; name: string; default?: boolean };
+type Props = { id: string; name: string; default?: boolean }
 
 const TabButton = (props: Props) => {
-  let buttonState: string;
+  let buttonState: string
   if (props.default) {
-    buttonState = "NavButtons current";
+    buttonState = 'NavButtons current'
   } else {
-    buttonState = "NavButtons";
+    buttonState = 'NavButtons'
   }
   return (
     <button
       id={props.id}
       className={buttonState}
       onClick={(e) => {
-        onClickTabButton(e);
+        onClickTabButton(e)
       }}
     >
       {props.name}
     </button>
-  );
-};
+  )
+}
 
-export default TabButton;
+export default TabButton

@@ -1,23 +1,23 @@
-.viewersCountContainer{
-    /* float: right; */
-    color: white;
-    display: flex;
-    align-items: center;
+.viewersCountContainer {
+  /* float: right; */
+  color: white;
+  display: flex;
+  align-items: center;
 }
 
 .viewersCountContainer span {
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .viewIcons {
-    display: block;
-    width: 24px;
-    height: 24px;
-    margin : 0 8px;
-    background-image: url("../../icons/view.svg");
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+  background-image: url('../../icons/view.svg');
 }
 
 .count {
-    font-weight: 700;
+  font-weight: 700;
 }

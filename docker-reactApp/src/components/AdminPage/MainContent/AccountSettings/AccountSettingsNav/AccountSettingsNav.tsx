@@ -1,11 +1,11 @@
-import React from "react";
-import classes from "./AccountSettingsNav.module.css";
+import React from 'react'
+import classes from './AccountSettingsNav.module.css'
 
 type Props = {
-  setButton: boolean;
-  setShowChangePasswordContent: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowManageSettingsContent: React.Dispatch<React.SetStateAction<boolean>>;
-};
+  setButton: boolean
+  setShowChangePasswordContent: React.Dispatch<React.SetStateAction<boolean>>
+  setShowManageSettingsContent: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export default function AccountSettingsNav(props: Props) {
   return (
@@ -33,5 +33,5 @@ export default function AccountSettingsNav(props: Props) {
         <i className={classes.arrowRight} />
       </button>
     </div>
-  );
+  )
 }

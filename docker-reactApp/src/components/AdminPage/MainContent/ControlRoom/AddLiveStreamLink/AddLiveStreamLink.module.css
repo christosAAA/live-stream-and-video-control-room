@@ -8,7 +8,7 @@
   width: 24px;
   height: 24px;
   margin-right: 8px;
-  background-image: url("../../../../../icons/linkOrange.svg");
+  background-image: url('../../../../../icons/linkOrange.svg');
 }
 .linkIcon:hover {
   cursor: pointer;

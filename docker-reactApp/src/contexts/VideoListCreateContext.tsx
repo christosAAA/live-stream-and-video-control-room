@@ -1,9 +1,16 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-export type VideosInfoFromFileProps = {streams:{default:{main: string},fromUser:{}},videos:{[x:string]: string}}
+export type VideosInfoFromFileProps = {
+  streams: { default: { main: string }; fromUser: {} }
+  videos: { [x: string]: string }
+}
 
-export const VideosListDataContext = createContext<VideosInfoFromFileProps>({streams:{default:{main: ""},fromUser:{}},videos:{[""]: ""}});
+export const VideosListDataContext = createContext<VideosInfoFromFileProps>({
+  streams: { default: { main: '' }, fromUser: {} },
+  videos: { ['']: '' },
+})
 
+// EXAMPLE JSON //
 // [
 //   {
 //     main: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",

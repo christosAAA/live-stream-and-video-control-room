@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSocket } from './SocketProvider'
 import {
   LiveVideoContext,
@@ -19,7 +19,6 @@ export const LiveVideoProvider: React.FC = ({ children }) => {
     socket.on(
       'currentLiveVideoResponse',
       async (data: { [x: string]: string }) => {
-        console.log('form video player:', data, typeof data)
         setLiveVideoData(data)
       }
     )

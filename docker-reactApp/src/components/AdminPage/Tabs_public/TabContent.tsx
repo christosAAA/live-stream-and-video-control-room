@@ -1,30 +1,25 @@
-import React from "react";
-import "./tabs.css";
+import React from 'react'
+import './tabs.css'
 
 type Props = {
-  id: string;
-  content: React.ReactElement;
-  default?: boolean;
-};
+  id: string
+  content: React.ReactElement
+  default?: boolean
+}
 
 const TabContent = (props: Props) => {
-  let contentState: string;
+  let contentState: string
   if (props.default) {
-    contentState = "block";
+    contentState = 'block'
   } else {
-    contentState = "none";
+    contentState = 'none'
   }
 
-  // const tabContent = (
-  //   <div id={props.id} style={{ display: contentState }}>
-  //     {props.content}
-  //   </div>
-  // );
   return (
     <div id={props.id} style={{ display: contentState }}>
-    {props.content}
-  </div>
-  );
-};
+      {props.content}
+    </div>
+  )
+}
 
-export default TabContent;
+export default TabContent

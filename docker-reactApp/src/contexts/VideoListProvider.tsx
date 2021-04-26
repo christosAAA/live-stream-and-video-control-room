@@ -1,42 +1,45 @@
-import { useEffect, useState } from "react";
-import { useSocket } from "./SocketProvider";
-import { VideosListDataContext, VideosInfoFromFileProps } from "./VideoListCreateContext";
+import { useEffect, useState } from 'react'
+import { useSocket } from './SocketProvider'
+import {
+  VideosListDataContext,
+  VideosInfoFromFileProps,
+} from './VideoListCreateContext'
 
 export const VideoListProvider: React.FC = ({ children }) => {
-  const {socket} = useSocket();
+  const { socket } = useSocket()
   const [fullList, setFullList] = useState<VideosInfoFromFileProps>({
     streams: {
       default: {
-        main: ""
+        main: '',
       },
-      fromUser: {}
+      fromUser: {},
     },
     videos: {
-      [""]: ""
-    }
-  });
+      ['']: '',
+    },
+  })
 
   useEffect(() => {
-    socket.emit("videoFilesListRequest");
+    socket.emit('videoFilesListRequest')
     return () => {
-      socket.off("videoFilesListRequest");
-    };
-  }, [socket]);
-const test = () => {
-  socket.emit("videoFilesListRequest");
-}
+      socket.off('videoFilesListRequest')
+    }
+  }, [socket])
+  const test = () => {
+    socket.emit('videoFilesListRequest')
+  }
   useEffect(() => {
-    socket.on("fullVideoList", async (response: VideosInfoFromFileProps) => {
-      setFullList(response);
-    });
+    socket.on('fullVideoList', async (response: VideosInfoFromFileProps) => {
+      setFullList(response)
+    })
     return () => {
-      socket.off("fullVideoList");
-    };
-  }, [socket]);
+      socket.off('fullVideoList')
+    }
+  }, [socket])
 
   return (
     <VideosListDataContext.Provider value={fullList}>
       {children}
     </VideosListDataContext.Provider>
-  );
-};
+  )
+}

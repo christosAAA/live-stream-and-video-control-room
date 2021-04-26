@@ -1,10 +1,9 @@
 import { createContext } from 'react'
-import {  LoginResponseProps } from '../components/App'
-
+import { LoginResponseProps } from '../components/App'
 
 export const CurrentUserContext = createContext<LoginResponseProps>({
-    loginCheck: false,
-    userStatus: "",
-    userName: "",
-    password:""
-  })
+  loginCheck: false,
+  userStatus: '',
+  userName: '',
+  password: '',
+})

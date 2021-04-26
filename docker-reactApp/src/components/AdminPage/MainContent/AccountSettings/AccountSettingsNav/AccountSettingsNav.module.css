@@ -26,7 +26,7 @@
   width: 24px;
   margin-right: 20px;
   vertical-align: middle;
-  background-image: url("../../../../../icons/lock.svg");
+  background-image: url('../../../../../icons/lock.svg');
 }
 .arrowRight {
   display: inline-block;
@@ -34,7 +34,7 @@
   height: 24px;
   width: 24px;
 
-  background-image: url("../../../../../icons/arrowRight.svg");
+  background-image: url('../../../../../icons/arrowRight.svg');
 }
 
 .userAdmin {
@@ -44,5 +44,5 @@
   width: 24px;
   margin-right: 20px;
   vertical-align: middle;
-  background-image: url("../../../../../icons/userAdmin.svg");
+  background-image: url('../../../../../icons/userAdmin.svg');
 }

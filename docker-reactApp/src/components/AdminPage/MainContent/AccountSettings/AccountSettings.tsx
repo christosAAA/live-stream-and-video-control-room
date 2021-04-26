@@ -1,27 +1,30 @@
-import React, { useState, useContext } from "react";
-import { Container, Row, Button } from "react-bootstrap";
-import { Lock, ArrowRightShort, ArrowLeft, PersonPlus } from "react-bootstrap-icons";
-import { CurrentUserContext } from "../../../../contexts/CurrentUserCreateContext";
-import ManageUsersPage from "./ManageUsersPage/ManageUsersPage";
-import ChangePasswordNamePage from "./ChangePasswordPage/ChangePasswordNamePage";
-import AccoutSettingsNav from "./AccountSettingsNav/AccountSettingsNav";
-import classes from "./AccountSettings.module.css";
+import React, { useState, useContext } from 'react'
+import { Row } from 'react-bootstrap'
+import { CurrentUserContext } from '../../../../contexts/CurrentUserCreateContext'
+import ManageUsersPage from './ManageUsersPage/ManageUsersPage'
+import ChangePasswordNamePage from './ChangePasswordPage/ChangePasswordNamePage'
+import AccoutSettingsNav from './AccountSettingsNav/AccountSettingsNav'
+import classes from './AccountSettings.module.css'
 
 type AccountSettingPagePros = {
-  showChangePassword: boolean;
-  showManageSettings: boolean;
-};
+  showChangePassword: boolean
+  showManageSettings: boolean
+}
 
 export default function AccountSettings() {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext)
 
-  const [showChangePasswordContent, setShowChangePasswordContent] = useState(false);
-  const [showManageSettingsContent, setShowManageSettingsContent] = useState(false);
+  const [showChangePasswordContent, setShowChangePasswordContent] = useState(
+    false
+  )
+  const [showManageSettingsContent, setShowManageSettingsContent] = useState(
+    false
+  )
 
   const AccountSettingPage = (props: AccountSettingPagePros) => {
-    let setButton = true;
-    if (currentUser.userStatus === "admin") {
-      setButton = false;
+    let setButton = true
+    if (currentUser.userStatus === 'admin') {
+      setButton = false
     }
     if (!props.showChangePassword && !props.showManageSettings) {
       //ACCOUNT SETTINGS
@@ -34,7 +37,7 @@ export default function AccountSettings() {
             setShowManageSettingsContent={setShowManageSettingsContent}
           />
         </div>
-      );
+      )
     } else if (props.showChangePassword) {
       //CHANGE PASSWORD
       return (
@@ -50,7 +53,7 @@ export default function AccountSettings() {
             <ChangePasswordNamePage />
           </Row>
         </div>
-      );
+      )
     } else if (props.showManageSettings) {
       //MANAGE USERS
       return (
@@ -66,16 +69,16 @@ export default function AccountSettings() {
             <ManageUsersPage />
           </Row>
         </div>
-      );
+      )
     } else {
-      return <h2>components cannot be rendered</h2>;
+      return <h2>components cannot be rendered</h2>
     }
-  };
+  }
 
   return (
     <AccountSettingPage
       showChangePassword={showChangePasswordContent}
       showManageSettings={showManageSettingsContent}
     />
-  );
+  )
 }

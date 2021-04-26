@@ -1,33 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 import {
   SelectedVideoContext,
   SelectedVideoContextProps,
-  SelectedVideoProps
-} from "../../../../../contexts/SelectedVideoCreateContext";
-import classes from "./VideoList.module.css";
-import { Spinner } from "react-bootstrap";
-import { useVideoList } from "../../../../../hooks/useVideoList";
+  SelectedVideoProps,
+} from '../../../../../contexts/SelectedVideoCreateContext'
+import classes from './VideoList.module.css'
+import { Spinner } from 'react-bootstrap'
+import { useVideoList } from '../../../../../hooks/useVideoList'
 
 type Props = {
-  key: number;
-  item: SelectedVideoProps;
-  liveDisplay: string;
-  linkDisplay: string;
-  chooseVideo: (key: number, videoFullList: Array<{ [x: string]: string }>) => void;
+  key: number
+  item: SelectedVideoProps
+  liveDisplay: string
+  linkDisplay: string
+  chooseVideo: (
+    key: number,
+    videoFullList: Array<{ [x: string]: string }>
+  ) => void
   deleteVideo: (
     selectedVideo: SelectedVideoProps,
     key: number,
     videoFullList: Array<{ [x: string]: string }>
-  ) => void;
-  deleteIconDisplay: string;
-};
+  ) => void
+  deleteIconDisplay: string
+}
 
 export default function CreateListItem(props: Props) {
-  const { videoList } = useVideoList();
-  const videoFullList = videoList();
+  const { videoList } = useVideoList()
+  const videoFullList = videoList()
   const { selectedVideo } = useContext<SelectedVideoContextProps>(
     SelectedVideoContext
-  );
+  )
   return (
     <div key={props.key} className={classes.videoItem}>
       <div
@@ -39,7 +42,7 @@ export default function CreateListItem(props: Props) {
         <div
           className={classes.liveIndicator}
           style={{
-            display: props.liveDisplay
+            display: props.liveDisplay,
           }}
         >
           live
@@ -51,21 +54,23 @@ export default function CreateListItem(props: Props) {
           id={`deleteIcon${props.key}`}
           style={{ display: props.deleteIconDisplay }}
           className={classes.deleteIcon}
-          onClick={() => props.deleteVideo(selectedVideo, props.key, videoFullList)}
+          onClick={() =>
+            props.deleteVideo(selectedVideo, props.key, videoFullList)
+          }
         ></i>
         <Spinner
           id={`spinner${props.key}`}
-          style={{ marginTop: "0", display: "none" }}
-          animation="grow"
+          style={{ marginTop: '0', display: 'none' }}
+          animation='grow'
         />
         <i
           className={classes.linkIcon}
           style={{
-            marginTop: "0",
-            display: props.linkDisplay
+            marginTop: '0',
+            display: props.linkDisplay,
           }}
         ></i>
       </div>
     </div>
-  );
+  )
 }

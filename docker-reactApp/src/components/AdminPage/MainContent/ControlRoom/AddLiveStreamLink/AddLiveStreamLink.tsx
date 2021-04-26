@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Container, Form } from 'react-bootstrap'
-import { useRef } from 'react'
 import { Modal, FormControlProps } from 'react-bootstrap'
 import { useAxiosRequest } from '../../../../../hooks/useAxiosRequest'
 import classes from './AddLiveStreamLink.module.css'
@@ -10,8 +9,6 @@ type SaveStreamProps = {
 }
 
 export default function AddLiveStreamLink() {
-  // const nameRef = useRef<HTMLInputElement>(null);
-  // const streamRef = useRef<HTMLInputElement>(null);
   const [show, setShow] = React.useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -41,7 +38,7 @@ export default function AddLiveStreamLink() {
   }
   return (
     <>
-      <Container className={classes.container} onClick={handleShow} >
+      <Container className={classes.container} onClick={handleShow}>
         <i className={classes.linkIcon} />
         <h1 className={classes.addLiveStream}>Add a live stream link</h1>
       </Container>
@@ -70,7 +67,6 @@ export default function AddLiveStreamLink() {
                   className={classes.input}
                   type='text'
                   placeholder='Name'
-                  // ref={nameRef}
                   onChange={setStreamName}
                   required
                   style={{ height: '48px', marginTop: '1%' }}
@@ -80,7 +76,6 @@ export default function AddLiveStreamLink() {
                 </Form.Label>
                 <Form.Control
                   className={classes.input}
-                  // ref={streamRef}
                   onChange={setStreamUrl}
                   type='text'
                   placeholder='https://server_link/example.m3u8'

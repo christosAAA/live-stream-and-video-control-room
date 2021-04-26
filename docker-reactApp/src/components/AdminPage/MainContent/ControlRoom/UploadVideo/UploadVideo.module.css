@@ -15,7 +15,7 @@
   width: 24px;
   height: 24px;
   margin: 0px 8px 0px 12px;
-  background-image: url("../../../../../icons/uploadGrey.svg");
+  background-image: url('../../../../../icons/uploadGrey.svg');
 }
 
 .uploadIconBlue {
@@ -24,7 +24,7 @@
   width: 24px;
   height: 24px;
   margin: 0px 8px 0px 12px;
-  background-image: url("../../../../../icons/uploadBlue.svg");
+  background-image: url('../../../../../icons/uploadBlue.svg');
 }
 
 .crossIcon {
@@ -33,14 +33,14 @@
   width: 24px;
   height: 24px;
   margin: 0px 8px 0px 12px;
-  background-image: url("../../../../../icons/cross.svg");
+  background-image: url('../../../../../icons/cross.svg');
 }
 
 .uploadTitle {
   font-size: 14px;
   display: inline-block;
   font-weight: normal;
-  color: #6C757D;
+  color: #6c757d;
 }
 
 .uploadButton {
@@ -64,7 +64,7 @@
   width: 24px;
   height: 24px;
   margin: 0px 8px 0px 12px;
-  background-image: url("../../../../../icons/loader.svg");
+  background-image: url('../../../../../icons/loader.svg');
 }
 
 .success {
@@ -73,5 +73,5 @@
   width: 24px;
   height: 24px;
   margin: 0px 8px 0px 12px;
-  background-image: url("../../../../../icons/check.svg");
+  background-image: url('../../../../../icons/check.svg');
 }

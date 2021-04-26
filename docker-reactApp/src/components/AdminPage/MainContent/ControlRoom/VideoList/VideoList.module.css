@@ -30,7 +30,7 @@
 
 .listItem {
   list-style-type: none;
-  color: #343a40 ;
+  color: #343a40;
   background-color: white !important;
   border-style: none !important;
   font-size: 14px;
@@ -80,7 +80,7 @@
 }
 
 .liveIndicator:before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 6px;
   height: 6px;
@@ -116,7 +116,7 @@
   width: 24px;
   height: 24px;
   margin-left: 12px;
-  background-image: url("../../../../../icons/link.svg");
+  background-image: url('../../../../../icons/link.svg');
 }
 
 .deleteIcon {
@@ -124,8 +124,6 @@
   width: 24px;
   height: 24px;
   float: right;
-  background-image: url("../../../../../icons/delete.svg");
+  background-image: url('../../../../../icons/delete.svg');
   cursor: context-menu;
 }
-
-

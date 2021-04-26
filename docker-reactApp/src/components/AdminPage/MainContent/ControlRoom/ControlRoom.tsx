@@ -1,10 +1,10 @@
-import React from "react";
-import VideoList from "./VideoList/VideoList";
-import { Container, Row, Col } from "react-bootstrap";
-import UploadVideo from "./UploadVideo/UploadVideo";
-import AddLiveStreamLink from "./AddLiveStreamLink/AddLiveStreamLink";
-import VideoPlayerComp from "./VideoPlayerComp/VideoPlayerComp";
-import classes from "./ControlRoom.module.css";
+import React from 'react'
+import VideoList from './VideoList/VideoList'
+import { Row, Col } from 'react-bootstrap'
+import UploadVideo from './UploadVideo/UploadVideo'
+import AddLiveStreamLink from './AddLiveStreamLink/AddLiveStreamLink'
+import VideoPlayerComp from './VideoPlayerComp/VideoPlayerComp'
+import classes from './ControlRoom.module.css'
 
 export default function ControlRoom() {
   return (
@@ -21,5 +21,5 @@ export default function ControlRoom() {
         </Col>
       </Row>
     </div>
-  );
+  )
 }

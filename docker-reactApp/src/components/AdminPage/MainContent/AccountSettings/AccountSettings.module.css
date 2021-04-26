@@ -15,7 +15,7 @@
   color: black;
   height: 24px;
   width: 24px;
-  background-image: url("../../../../icons/arrowLeft.svg");
+  background-image: url('../../../../icons/arrowLeft.svg');
   cursor: pointer;
   margin-left: 18px;
 }
@@ -36,4 +36,3 @@
   margin-top: 8px;
   margin-bottom: 40px;
 }
-

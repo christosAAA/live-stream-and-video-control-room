@@ -4,13 +4,9 @@ import ReactPlayer from 'react-player'
 import ViewersCount from '../ViewersCount_public/ViewersCount'
 import { useLiveVideo } from '../../hooks/useLiveVideo'
 import classes from './VideoPlayer.module.css'
-import { useAxiosRequest } from '../../hooks/useAxiosRequest'
-import { api_base } from '../../config'
-import Header from '../AdminPage/Header/Header'
 
 export default function VideoPlayer() {
   const { socket } = useSocket()
-  const { request } = useAxiosRequest()
   const { liveVideo } = useLiveVideo()
 
   useEffect(() => {

@@ -10,7 +10,7 @@
   width: 24px;
   height: 24px;
   float: right;
-  background-image: url("../../../../../../icons/delete.svg");
+  background-image: url('../../../../../../icons/delete.svg');
   cursor: context-menu;
 }
 

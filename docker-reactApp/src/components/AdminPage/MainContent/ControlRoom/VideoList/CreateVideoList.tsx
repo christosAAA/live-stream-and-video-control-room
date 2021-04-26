@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react'
+import React, { useContext, useState } from 'react'
 import {
   SelectedVideoContext,
   SelectedVideoContextProps,
@@ -28,7 +28,6 @@ export default function CreateVideoList() {
     key: number,
     videoFullList: Array<{ [x: string]: string }>
   ) => {
-    console.log('VIDEO FULL LIST', videoFullList, key)
     const selectedVideoName = Object.keys(videoFullList[key])[0]
     const selectedVideoUrl = Object.values(videoFullList[key])[0]
     const selectedElement = { [selectedVideoName]: selectedVideoUrl }
@@ -43,7 +42,6 @@ export default function CreateVideoList() {
     key: number,
     videoFullList: Array<{ [x: string]: string }>
   ) => {
-    console.log('key from delete', key)
     if (key === 0) {
       console.log('cannot delete main')
       return

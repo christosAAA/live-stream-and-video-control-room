@@ -1,7 +1,9 @@
-import { createContext} from "react";
+import { createContext } from 'react'
 
 export type LiveVideoContextProps = {
-    [x:string]: string ;
+  [x: string]: string
 }
 
-export const LiveVideoContext = createContext<LiveVideoContextProps>({[""]:""});
+export const LiveVideoContext = createContext<LiveVideoContextProps>({
+  ['']: '',
+})
