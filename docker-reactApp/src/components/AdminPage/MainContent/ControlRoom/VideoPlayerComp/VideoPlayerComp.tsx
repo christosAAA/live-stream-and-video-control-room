@@ -23,6 +23,8 @@ export default function VideoPlayerComp() {
     let videoUrlSrc = ''
     if (selectedVideoUrl.endsWith('.m3u8')) {
       videoUrlSrc = '/stream/' + selectedVideoUrl
+    } else if (selectedVideoUrl.endsWith('.m3u8') && selectedVideoName !== "main"){
+      videoUrlSrc = selectedVideoUrl
     } else {
       videoUrlSrc = '/uploads/' + selectedVideoUrl
     }
