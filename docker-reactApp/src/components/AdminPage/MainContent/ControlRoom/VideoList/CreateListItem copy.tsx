@@ -45,6 +45,7 @@ export default function CreateListItem(props: Props) {
   useEffect(() => {
     disableDeleteButtonOnLiveVideo()
   }, [])
+
   return (
     <div key={props.keyId} className={classes.videoItem}>
       <div
@@ -54,7 +55,7 @@ export default function CreateListItem(props: Props) {
       >
         {Object.keys(props.item)}
         <div
-        id={'liveIndicator' + props.keyId}
+          id={'liveIndicator' + props.keyId}
           className={classes.liveIndicator}
           style={{
             display: props.liveDisplay,

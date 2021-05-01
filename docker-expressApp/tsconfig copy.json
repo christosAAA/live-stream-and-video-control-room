@@ -3,7 +3,7 @@
   
     "compilerOptions": {
       "preserveConstEnums": true,
-      "outDir": "./dist/src/",
+      "outDir": "./dist",
       "lib":[
         "DOM",
         "es6"

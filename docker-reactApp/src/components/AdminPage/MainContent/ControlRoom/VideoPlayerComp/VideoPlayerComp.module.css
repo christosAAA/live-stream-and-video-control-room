@@ -15,3 +15,15 @@
   line-height: 30px;
   width: calc(100% - 216px);
 }
+
+.liveLabel {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0px 12px;
+  position: absolute;
+  color:#212529;
+  top: 80px;
+  left: 30px;
+  height: 64px;
+}

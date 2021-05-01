@@ -12,7 +12,7 @@ import {
 import { currentUserId } from './currentUser.js'
 import express from 'express'
 import upload from 'express-fileupload'
-
+import { path, uploadPath } from './config'
 export const loginValidation = async (
   loginFormData: express.Request,
   response: express.Response
@@ -25,7 +25,7 @@ export const loginValidation = async (
 
   let validation: ValidationProps = { message: '' }
   const userDetailsFromFile: UserDetailsFromFileProps = await readFile(
-    '/app/dist/src/api/userDetails.json'
+    path + 'userDetails.json'
   )
 
   // if user name exists returns password of specific user else returns false
@@ -74,7 +74,7 @@ export const changeUserDetails: express.RequestHandler = async (
 
   // get all data from Json file
   const usersDetailsFromFile: UserDetailsFromFileProps = await readFile(
-    '/app/dist/src/api/userDetails.json'
+    path + 'userDetails.json'
   )
   let usersDetails = JSON.stringify(usersDetailsFromFile)
   let usersDetailsObj = JSON.parse(usersDetails)
@@ -98,10 +98,8 @@ export const changeUserDetails: express.RequestHandler = async (
     password: newHashedPassword,
   }
   let newUserDetails = JSON.stringify(usersDetailsFromFile)
-
   // console.log(newUserDetails);
-
-  await saveFile('/app/dist/src/api/userDetails.json', newUserDetails)
+  await saveFile(path + 'userDetails.json', newUserDetails)
   res.json({ message: true })
   next()
 }
@@ -118,7 +116,7 @@ export const addUser: express.RequestHandler = async (req, res, next) => {
 
   // get all data from Json file
   const usersDetailsFromFile: UserDetailsFromFileProps = await readFile(
-    '/app/dist/src/api/userDetails.json'
+    path + 'userDetails.json'
   )
   let usersDetails = JSON.stringify(usersDetailsFromFile)
   let usersDetailsObj = JSON.parse(usersDetails)
@@ -143,14 +141,14 @@ export const addUser: express.RequestHandler = async (req, res, next) => {
   }
   //save file
   let newUsersDetails = JSON.stringify(usersDetailsObj)
-  await saveFile('/app/dist/src/api/userDetails.json', newUsersDetails)
+  await saveFile(path + 'userDetails.json', newUsersDetails)
   res.json({ message: true })
   next()
 }
 
 export const deleteUser: express.RequestHandler = async (req, res, next) => {
   const usersDetailsFromFile: UserDetailsFromFileProps = await readFile(
-    '/app/dist/src/api/userDetails.json'
+    path + 'userDetails.json'
   )
 
   if (usersDetailsFromFile[currentUserId].userStatus === 'user') {
@@ -182,7 +180,7 @@ export const deleteUser: express.RequestHandler = async (req, res, next) => {
 
   // console.log(newListObj);
 
-  await saveFile('/app/dist/src/api/userDetails.json', newList)
+  await saveFile(path + 'userDetails.json', newList)
   res.send('user been deleted')
   next()
 }
@@ -191,7 +189,7 @@ export const saveLiveVideo: express.RequestHandler = async (req, res, next) => {
   let userInputCurrentVideo = req.body
   let userInputCurrentVideoStr = JSON.stringify(userInputCurrentVideo)
   await saveFile(
-    '/app/dist/src/api/currentLiveVideo.json',
+    path + 'currentLiveVideo.json',
     userInputCurrentVideoStr
   )
   res.send('file been saved')
@@ -201,7 +199,7 @@ export const saveLiveVideo: express.RequestHandler = async (req, res, next) => {
 export const deleteVideo: express.RequestHandler = async (req, res, next) => {
   let currentVideoFromRequest = req.body.currentVideo
   let currentVideoFromFile = await readFile(
-    '/app/dist/src/api/currentLiveVideo.json'
+    path + 'currentLiveVideo.json'
   )
   currentVideoFromFile = Object.values(currentVideoFromFile)[0]
 
@@ -215,13 +213,13 @@ export const deleteVideo: express.RequestHandler = async (req, res, next) => {
   if (checkFileTypeM3u8(currentVideoFromRequest)) {
     // console.log("delete file from stream list file");
 
-    const streamFile = await readFile('/app/dist/src/api/streamList.json')
+    const streamFile = await readFile(path + 'streamList.json')
     // console.log(streamFile.streams.fromUser);
     Object.keys(streamFile.streams.fromUser).forEach(async (item, key) => {
       if (streamFile.streams.fromUser[item] === currentVideoFromRequest) {
         delete streamFile.streams.fromUser[item]
         const newStremListFile = JSON.stringify(streamFile)
-        await saveFile('/app/dist/src/api/streamList.json', newStremListFile)
+        await saveFile(path + 'streamList.json', newStremListFile)
         // io.emit("fullVideoList", await createFullVideoObj());
         res.send('stream link been deleted')
         // console.log("new stream file", streamFile);
@@ -231,16 +229,15 @@ export const deleteVideo: express.RequestHandler = async (req, res, next) => {
   }
   if (currentVideoFromRequest !== currentVideoFromFile) {
     fs.watch(
-      __dirname + '/uploads/' + currentVideoFromRequest,
+      uploadPath + currentVideoFromRequest,
       async (eventType, filename) => {
         // console.log('WATCH UPLOAD FOLDER', eventType, filename)
         res.send('video file been deleted')
         next()
       }
     )
-    fs.unlinkSync(__dirname + '/uploads/' + currentVideoFromRequest)
+    fs.unlinkSync(uploadPath + currentVideoFromRequest)
   }
-
 }
 
 export const uploadVideoFile = (
@@ -255,7 +252,7 @@ export const uploadVideoFile = (
     let filename = fileObject.name
 
     fileObject.mv(
-      __dirname + '/uploads/' + filename,
+      uploadPath + filename,
       async function (err: Error) {
         if (err) {
           res.send('error')
@@ -275,14 +272,14 @@ export const addLiveStreamLink: express.RequestHandler = async (
 ) => {
   // console.log('form post new stream', req.body)
   const userStreamData = req.body
-  const streamFile = await readFile('/app/dist/src/api/streamList.json')
+  const streamFile = await readFile(path + 'streamList.json')
   // console.log('stream file ', streamFile.streams.fromUser)
   if (inputStreamLinkValidation(streamFile, userStreamData)) {
     streamFile.streams.fromUser[`${Object.keys(req.body)[0]}`] = Object.values(
       req.body
     )[0]
     const newStremListFile = JSON.stringify(streamFile)
-    await saveFile('/app/dist/src/api/streamList.json', newStremListFile)
+    await saveFile(path + 'streamList.json', newStremListFile)
     res.send('stream link been added')
     next()
   } else {

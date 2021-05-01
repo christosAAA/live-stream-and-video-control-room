@@ -25,9 +25,7 @@ export const VideoListProvider: React.FC = ({ children }) => {
       socket.off('videoFilesListRequest')
     }
   }, [socket])
-  const test = () => {
-    socket.emit('videoFilesListRequest')
-  }
+
   useEffect(() => {
     socket.on('fullVideoList', async (response: VideosInfoFromFileProps) => {
       setFullList(response)

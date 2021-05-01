@@ -5,7 +5,7 @@ import {
   readStreamFile,
   createFullVideoObj,
 } from './utils.js'
-
+import { path } from './config'
 module.exports = function (io: SocketIOClient.Server) {
   var numClients = 0
   io.on('connection', async (socket: SocketIOClient.Socket) => {
@@ -29,7 +29,7 @@ module.exports = function (io: SocketIOClient.Server) {
       // console.log(await readFile('/app/dist/src/api/userDetails.json'))
       io.emit(
         'getUserListResponse',
-        await readFile('/app/dist/src/api/userDetails.json')
+        await readFile(path + 'userDetails.json')
       )
     })
 
@@ -41,7 +41,7 @@ module.exports = function (io: SocketIOClient.Server) {
     })
 
     socket.on('currentLiveVideoRequest', async () => {
-      const response = await readFile('/app/dist/src/api/currentLiveVideo.json')
+      const response = await readFile(path + 'currentLiveVideo.json')
       io.emit('currentLiveVideoResponse', response)
     })
   })

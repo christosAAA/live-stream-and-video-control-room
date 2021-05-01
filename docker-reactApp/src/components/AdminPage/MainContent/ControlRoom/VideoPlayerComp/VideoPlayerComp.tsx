@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player'
 import { SelectedVideoContext } from '../../../../../contexts/SelectedVideoCreateContext'
 import PublishVideoButton from '../PublishVideoButton/PublishVideoButton'
 import classes from './VideoPlayerComp.module.css'
+import { uploadPath, streamPath } from '../../../../../config'
 import { useSocket } from '../../../../../contexts/SocketProvider'
 
 export default function VideoPlayerComp() {
@@ -34,10 +35,10 @@ export default function VideoPlayerComp() {
             <ReactPlayer controls url={url} />
           ) : (
             <div className={classes.videoWrapper}>
-              <div style={{ width: '100%', height: '100%' }}>
-                please start your live stream <br />
-                rtmp://localhost:1936/live/test
-              </div>
+              <span id='liveLabel' className={classes.liveLabel}>
+                please start your live stream http://localhost:1936/live/test{' '}
+                <br /> replace locahost with your url
+              </span>
               <ReactPlayer controls url={url} />
             </div>
           )}
@@ -54,10 +55,12 @@ export default function VideoPlayerComp() {
 
   useEffect(() => {
     let videoUrlSrc = ''
-    if (selectedVideoUrl.endsWith('.m3u8')) {
-      videoUrlSrc = '/stream/' + selectedVideoUrl
+    if (selectedVideoUrl.startsWith('http')) {
+      videoUrlSrc = selectedVideoUrl
+    } else if (selectedVideoUrl.endsWith('.m3u8')) {
+      videoUrlSrc = streamPath + selectedVideoUrl
     } else {
-      videoUrlSrc = '/uploads/' + selectedVideoUrl
+      videoUrlSrc = uploadPath + selectedVideoUrl
     }
     setUrl(videoUrlSrc)
     Player()

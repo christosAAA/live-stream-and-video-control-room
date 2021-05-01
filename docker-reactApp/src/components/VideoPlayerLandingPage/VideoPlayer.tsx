@@ -4,6 +4,8 @@ import ReactPlayer from 'react-player'
 import ViewersCount from '../ViewersCount_public/ViewersCount'
 import { useLiveVideo } from '../../hooks/useLiveVideo'
 import classes from './VideoPlayer.module.css'
+import { uploadPath,streamPath } from '../../config'
+
 
 export default function VideoPlayer() {
   const { socket } = useSocket()
@@ -31,10 +33,13 @@ export default function VideoPlayer() {
   }
 
   let videoUrlSrc = ''
-  if (liveVideo().url.endsWith('.m3u8')) {
-    videoUrlSrc = '/stream/' + liveVideo().url
+  if (liveVideo().url.startsWith('http')) {
+    // for local development
+    videoUrlSrc = liveVideo().url
+  } else if (liveVideo().url.endsWith('.m3u8')) {
+    videoUrlSrc = streamPath + liveVideo().url
   } else {
-    videoUrlSrc = '/uploads/' + liveVideo().url
+    videoUrlSrc = uploadPath + liveVideo().url
   }
 
   return (

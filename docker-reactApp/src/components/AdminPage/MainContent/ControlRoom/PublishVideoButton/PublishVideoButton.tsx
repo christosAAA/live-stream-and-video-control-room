@@ -5,6 +5,7 @@ import {
   SelectedVideoContext,
   SelectedVideoProps,
 } from '../../../../../contexts/SelectedVideoCreateContext'
+import { setDeleteIcon } from '../VideoList/utils'
 
 export default function PublishVideo() {
   const { request } = useAxiosRequest()
@@ -18,6 +19,17 @@ export default function PublishVideo() {
     if (!window.confirm(`Are you sure you wanna publish ${selectedVideoName}?`))
       return
     request('post', '/saveLiveVideo', selectedVideo)
+        // need a better solution here
+        setTimeout(() => disableDeleteButtonOnLiveVideo(), 500)
+      }
+      const disableDeleteButtonOnLiveVideo = () => {
+        let para = document.querySelectorAll<HTMLElement>('[id^="liveIndicator"]')
+        para.forEach((item, i) => {
+          console.log('item', item.style.display)
+          if (item.style.display === 'flex') {
+            setDeleteIcon(i, 'deleteVideoState')
+          }
+        })
   }
 
   return (

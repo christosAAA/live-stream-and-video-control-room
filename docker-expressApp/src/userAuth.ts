@@ -6,6 +6,7 @@ import {
   UserDetailsFromFileProps,
 } from './types.js'
 import express from 'express'
+import { path } from './config'
 let userNameForm: string = ''
 let userPasswordForm: string = ''
 
@@ -18,7 +19,7 @@ const userAuth: express.RequestHandler = async (req, res, next) => {
 
   let validation: ValidationProps = { message: '' }
   const userDetailsFromFile: UserDetailsFromFileProps = await readFile(
-    '/app/dist/src/api/userDetails.json'
+    path + 'userDetails.json'
   )
 
   // if user name exists returns password of specific user else returns false

@@ -14,7 +14,7 @@ import {
   saveLiveVideo
 } from "./routesCallbacks.js";
 import SocketIOClient from "socket.io";
-import { port } from "../config.js";
+import { port, path, uploadPath} from "./config.js";
 
 const app = express();
 const server = require("http").Server(app);
@@ -45,7 +45,7 @@ app.use(function (
 });
 
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/uploads", express.static('app/dist/src/uploads/'));
+app.use("/uploads", express.static(uploadPath));
 
 ////////////////////////////////////////////////////////////////////
 
@@ -63,7 +63,7 @@ app.post("/change_user_details", userAuth, changeUserDetails);
 // responds to the client with a valid message for each case
 // plain users has not access to add user functionality
 app.post("/add_user", userAuth, addUser, async () => {
-  io.emit("getUserListResponse", await readFile("/app/dist/src/api/userDetails.json"));
+  io.emit("getUserListResponse", await readFile(path+"userDetails.json"));
 });
 
 // On delete user submit event is check the user name and password
@@ -71,13 +71,13 @@ app.post("/add_user", userAuth, addUser, async () => {
 // admin users cannot be deleted
 // plain users has not access to add user functionality
 app.post("/delete_user", userAuth, deleteUser, async () => {
-  io.emit("getUserListResponse", await readFile("/app/dist/src/api/userDetails.json"));
+  io.emit("getUserListResponse", await readFile(path+"userDetails.json"));
 });
 
 // The current live video been saved to database
 // for use doesn't depend on the admin app
 app.post("/saveLiveVideo", userAuth, saveLiveVideo, async () => {
-  io.emit("currentLiveVideoResponse", await readFile("/app/dist/src/api/currentLiveVideo.json"));
+  io.emit("currentLiveVideoResponse", await readFile(path+"currentLiveVideo.json"));
 });
 
 // Deletes video from server or removes stream link from stream file

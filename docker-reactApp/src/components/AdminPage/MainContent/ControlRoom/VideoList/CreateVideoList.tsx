@@ -90,18 +90,17 @@ export default function CreateVideoList() {
     (item: SelectedVideoProps, key: number) => {
       let linkDisplay = linkIconDisplay(item)
       let liveDisplay = liveIconDisplay(key, item, liveVideo().url)
-      let ListItem = CreateListItem({
-        key,
-        item,
-        linkDisplay,
-        liveDisplay,
-        chooseVideo,
-        deleteVideo,
-        deleteIconDisplay,
-      })
       return (
         <li key={key} className={classes.listItem} id={`button${key}`}>
-          {ListItem}
+          <CreateListItem
+            keyId={key}
+            item={item}
+            linkDisplay={linkDisplay}
+            liveDisplay={liveDisplay}
+            chooseVideo={chooseVideo}
+            deleteVideo={deleteVideo}
+            deleteIconDisplay={deleteIconDisplay}
+          />
         </li>
       )
     }

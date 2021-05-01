@@ -6,7 +6,7 @@ import {
   StreamsProps,
   UserStreamDataProps,
 } from './types.js'
-
+import {uploadPath,path} from './config'
 // Reads data from file and parse them to an object
 // return the object
 export const readFile = async (file: string) => {
@@ -80,7 +80,7 @@ export const saveFile = async (file: string, data: any) => {
 // returns object with filename and filelink
 export const readFolder = async () => {
   let videos = {}
-  let files = await fs.promises.readdir('/app/dist/src/uploads/')
+  let files = await fs.promises.readdir(uploadPath)
   files.forEach((file: string, key: number) => {
     const fileName = file.split('.')[0]
     videos = { ...videos, [fileName]: file }
@@ -90,7 +90,7 @@ export const readFolder = async () => {
 
 export const readStreamFile = async () => {
   let fileLinks: StreamsProps
-  const response = await readFile('/app/dist/src/api/streamList.json')
+  const response = await readFile(path+'streamList.json')
   fileLinks = response.streams
   return fileLinks
 }
