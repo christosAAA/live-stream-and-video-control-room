@@ -10,7 +10,7 @@ import MainContent from './MainContent/MainContent'
 
 export default function AdminPage() {
   const [selectedVideo, setSelectedVideo] = useState<SelectedVideoProps>({
-    ['main']: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+    ['main']: 'test.m3u8',
   })
 
   return (
