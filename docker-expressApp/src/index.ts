@@ -95,18 +95,19 @@ app.post("/add_live_stream_link", userAuth, addLiveStreamLink, async () => {
   io.emit("fullVideoList", await createFullVideoObj());
 });
 
-// watch mounted stream folder for the live stream file 
-const watchStreamFolder = () => {
-  fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
-    // console.log("WATCH STREAM FOLDER", eventType.dev);
-    let liveStream = false;
-    if (eventType.dev !== 0) {
-      liveStream = true
-    }
-    io.emit("liveStreamState", liveStream);
-  })
-}
-watchStreamFolder()
+// // watch mounted stream folder for the live stream file 
+// const watchStreamFile = () => {
+//   console.log("watch file")
+//   fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
+//     console.log("WATCH STREAM FOLDER", eventType.dev);
+//     let liveStream = false;
+//     if (eventType.dev !== 0) {
+//       liveStream = true
+//     }
+//     io.emit("liveStreamState", liveStream);
+//   })
+// }
+// watchStreamFile()
 
 server.listen(port, console.log(`running at ${port}`));
 

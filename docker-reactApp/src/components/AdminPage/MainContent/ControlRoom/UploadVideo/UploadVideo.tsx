@@ -39,6 +39,7 @@ export default function UploadVideo() {
     }
   }
   const onChange = (files: FileList | null) => {
+    if (files === undefined || files === null) return
     if (!files.item(0).name.endsWith('.mp4')) {
       uploadButtonState({
         ...errorState,

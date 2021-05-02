@@ -13,22 +13,40 @@ export default function VideoPlayerComp() {
   const { socket } = useSocket()
   const selectedVideoName = Object.keys(selectedVideo)[0]
   const selectedVideoUrl = Object.values(selectedVideo)[0]
-
-  const getLiveStreamState = () => {
-    socket.on('liveStreamState', async (data: boolean) => {
-      setLiveStream(data)
-    })
-  }
+  const [dataHere ,setDataHere] = useState<boolean>()
 
   useEffect(() => {
-    getLiveStreamState()
-    return () => {
-      socket.off('getLiveStreamState')
-    }
-  }, [socket, setLiveStream])
+    socket.emit('liveStreamStateRequest')
+    socket.on('liveStreamState', async (data: boolean) => {
+      console.log('data streeam res', data)
+      console.log("before check",data,dataHere)
+      setDataHere(data)
+      if (dataHere !== data){
+        console.log(data,dataHere)
+        setLiveStream(data)
+      }
+      return () => {
+        socket.off('liveStreamStateRequest')
+        socket.off('liveStreamState')
+      }
+
+    })
+  }, [selectedVideo])
 
   const Player = () => {
+    let videoUrlSrc = ''
+    if (selectedVideoUrl.startsWith('http')) {
+      videoUrlSrc = selectedVideoUrl
+      setUrl(videoUrlSrc)
+      return (
+        <div className={classes.videoWrapper}>
+          <ReactPlayer controls url={url} />
+        </div>
+      )
+    }
     if (selectedVideoUrl.endsWith('.m3u8')) {
+      videoUrlSrc = streamPath + selectedVideoUrl
+      setUrl(videoUrlSrc)
       return (
         <div className={classes.videoWrapper}>
           {liveStream ? (
@@ -44,7 +62,10 @@ export default function VideoPlayerComp() {
           )}
         </div>
       )
-    } else {
+    }
+    if (selectedVideoUrl.endsWith('.mp4')) {
+      videoUrlSrc = uploadPath + selectedVideoUrl
+      setUrl(videoUrlSrc)
       return (
         <div className={classes.videoWrapper}>
           <ReactPlayer controls url={url} />
@@ -52,19 +73,6 @@ export default function VideoPlayerComp() {
       )
     }
   }
-
-  useEffect(() => {
-    let videoUrlSrc = ''
-    if (selectedVideoUrl.startsWith('http')) {
-      videoUrlSrc = selectedVideoUrl
-    } else if (selectedVideoUrl.endsWith('.m3u8')) {
-      videoUrlSrc = streamPath + selectedVideoUrl
-    } else {
-      videoUrlSrc = uploadPath + selectedVideoUrl
-    }
-    setUrl(videoUrlSrc)
-    Player()
-  }, [socket, selectedVideo])
 
   return (
     <div style={{ paddingTop: '66px' }}>

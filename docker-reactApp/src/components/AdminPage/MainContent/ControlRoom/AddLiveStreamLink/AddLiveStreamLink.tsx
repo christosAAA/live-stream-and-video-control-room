@@ -15,17 +15,18 @@ export default function AddLiveStreamLink() {
   const { request } = useAxiosRequest()
   const [loginMessage, setLoginMessage] = useState('')
   const saveStreamLink = async (data: SaveStreamProps | undefined) => {
+    if (!Object.values(data)[0].endsWith('.m3u8')) return
     const response = await request('post', '/add_live_stream_link', data)
     setLoginMessage(response.data)
   }
   const [streamData, setStreamData] = useState<SaveStreamProps>({ ['']: '' })
 
   const setStreamName: FormControlProps['onChange'] = (event) => {
-    if (!streamData || streamData === undefined) return
+    if (!streamData || streamData === undefined ) return
     setStreamData({ [event.target.value]: Object.values(streamData)[0] })
   }
   const setStreamUrl: FormControlProps['onChange'] = (event) => {
-    if (!streamData || streamData === undefined) return
+    if (!streamData || streamData === undefined ) return
     setStreamData({ [Object.keys(streamData)[0]]: event.target.value })
   }
 

@@ -136,3 +136,14 @@ export const checkFileTypeM3u8 = (videoInputLink: string) => {
     return false
   }
 }
+// watch mounted stream folder for the live stream file 
+// export const watchStreamFolder = async () => {
+//   fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
+//     // console.log("WATCH STREAM FOLDER", eventType.dev);
+//     let liveStream = false;
+//     if (eventType.dev !== 0) {
+//       liveStream = true
+//     }
+//   })
+// }
+
