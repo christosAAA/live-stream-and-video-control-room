@@ -24,7 +24,6 @@ export default function VideoPlayerComp() {
           setLiveStream(data)
         }
         setPrevLiveStream(data)
-        
       })
     }
     return () => {
@@ -36,6 +35,7 @@ export default function VideoPlayerComp() {
   const Player = () => {
     let videoUrlSrc = ''
     if (selectedVideoUrl.startsWith('http')) {
+      console.log("http")
       videoUrlSrc = selectedVideoUrl
       setUrl(videoUrlSrc)
       return (
