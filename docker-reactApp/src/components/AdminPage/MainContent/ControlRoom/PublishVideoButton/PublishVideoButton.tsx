@@ -25,7 +25,6 @@ export default function PublishVideo() {
       const disableDeleteButtonOnLiveVideo = () => {
         let para = document.querySelectorAll<HTMLElement>('[id^="liveIndicator"]')
         para.forEach((item, i) => {
-          console.log('item', item.style.display)
           if (item.style.display === 'flex') {
             setDeleteIcon(i, 'deleteVideoState')
           }

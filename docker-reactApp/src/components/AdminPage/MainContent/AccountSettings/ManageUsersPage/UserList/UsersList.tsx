@@ -20,22 +20,18 @@ export default function UsersList() {
   }
   const setDeleteIcon = (
     key: number,
-    test?: string,
+    state?: string,
     prev?: number,
     setPrev?: React.Dispatch<React.SetStateAction<number>>
   ) => {
-    console.log('set delete icon', key)
-    if (test === 'chooseVideo') {
-      console.log('set delete icon', key)
+
+    if (state === 'chooseVideo') {
       let deleteIconButtonPrev = document.getElementById(`deleteIconUL${prev}`)
-      console.log(deleteIconButtonPrev)
       if (deleteIconButtonPrev) {
-        console.log('previous', deleteIconButtonPrev)
         deleteIconButtonPrev.style.display = 'none'
       }
       if (key === 0) return
       let deleteIconButton = document.getElementById(`deleteIconUL${key}`)
-      console.log(deleteIconButton)
       if (deleteIconButton) {
         deleteIconButton.style.display = 'inline-block'
         if (setPrev) {
