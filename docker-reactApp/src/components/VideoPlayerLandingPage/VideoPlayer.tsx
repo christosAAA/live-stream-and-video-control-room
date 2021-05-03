@@ -4,8 +4,7 @@ import ReactPlayer from 'react-player'
 import ViewersCount from '../ViewersCount_public/ViewersCount'
 import { useLiveVideo } from '../../hooks/useLiveVideo'
 import classes from './VideoPlayer.module.css'
-import { uploadPath,streamPath } from '../../config'
-
+import { uploadPath, streamPath } from '../../config'
 
 export default function VideoPlayer() {
   const { socket } = useSocket()
@@ -51,6 +50,7 @@ export default function VideoPlayer() {
         <ReactPlayer
           className={classes.videoPlayer}
           controls
+          loop
           url={videoUrlSrc}
         />
         <div className={classes.titleContainer}>

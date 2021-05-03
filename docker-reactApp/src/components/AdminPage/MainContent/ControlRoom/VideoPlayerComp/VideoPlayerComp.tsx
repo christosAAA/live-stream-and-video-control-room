@@ -9,29 +9,29 @@ import { useSocket } from '../../../../../contexts/SocketProvider'
 export default function VideoPlayerComp() {
   const { selectedVideo } = useContext(SelectedVideoContext)
   const [url, setUrl] = useState('')
-  const [liveStream, setLiveStream] = useState(false)
+  
   const { socket } = useSocket()
   const selectedVideoName = Object.keys(selectedVideo)[0]
   const selectedVideoUrl = Object.values(selectedVideo)[0]
-  const [dataHere ,setDataHere] = useState<boolean>()
+  const [liveStream, setLiveStream] = useState(false)
+  const [prevLiveStream, setPrevLiveStream] = useState<boolean>()
 
   useEffect(() => {
-    socket.emit('liveStreamStateRequest')
-    socket.on('liveStreamState', async (data: boolean) => {
-      console.log('data streeam res', data)
-      console.log("before check",data,dataHere)
-      setDataHere(data)
-      if (dataHere !== data){
-        console.log(data,dataHere)
-        setLiveStream(data)
-      }
-      return () => {
-        socket.off('liveStreamStateRequest')
-        socket.off('liveStreamState')
-      }
-
-    })
-  }, [selectedVideo])
+    if (selectedVideoUrl.endsWith('.m3u8') && !selectedVideoUrl.startsWith('http')) {
+      socket.emit('liveStreamStateRequest')
+      socket.on('liveStreamState', async (data: boolean) => {
+        if (prevLiveStream !== data) {
+          setLiveStream(data)
+        }
+        setPrevLiveStream(data)
+        
+      })
+    }
+    return () => {
+      socket.off('liveStreamStateRequest')
+      socket.off('liveStreamState')
+    }
+  }, [socket,selectedVideo])
 
   const Player = () => {
     let videoUrlSrc = ''
@@ -40,24 +40,24 @@ export default function VideoPlayerComp() {
       setUrl(videoUrlSrc)
       return (
         <div className={classes.videoWrapper}>
-          <ReactPlayer controls url={url} />
+          <ReactPlayer controls loop url={url} />
         </div>
       )
     }
-    if (selectedVideoUrl.endsWith('.m3u8')) {
+    if (selectedVideoUrl.endsWith('.m3u8') && !selectedVideoUrl.startsWith('http')) {
       videoUrlSrc = streamPath + selectedVideoUrl
       setUrl(videoUrlSrc)
       return (
         <div className={classes.videoWrapper}>
           {liveStream ? (
-            <ReactPlayer controls url={url} />
+            <ReactPlayer controls loop url={url} />
           ) : (
             <div className={classes.videoWrapper}>
               <span id='liveLabel' className={classes.liveLabel}>
                 please start your live stream http://localhost:1936/live/test{' '}
                 <br /> replace locahost with your url
               </span>
-              <ReactPlayer controls url={url} />
+              <ReactPlayer controls loop url={url} />
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ export default function VideoPlayerComp() {
       setUrl(videoUrlSrc)
       return (
         <div className={classes.videoWrapper}>
-          <ReactPlayer controls url={url} />
+          <ReactPlayer controls loop url={url} />
         </div>
       )
     }

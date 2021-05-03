@@ -22,8 +22,6 @@ const checkLiveVideoId = () => {
   let para = document.querySelectorAll<HTMLElement>('[id^="liveIndicator"]')
   let liveVideoId = 0
   para.forEach((item, i) => {
-    console.log('item', item.style.display)
-
     if (item.style.display === 'flex') {
       liveVideoId = i
     }
@@ -50,7 +48,6 @@ export const setDeleteIcon = (
       }
     }
     if (checkLiveVideoId() === key) {
-      console.log('the key is the SAME')
       if (deleteIconButton) {
         deleteIconButton.style.display = 'none'
       }

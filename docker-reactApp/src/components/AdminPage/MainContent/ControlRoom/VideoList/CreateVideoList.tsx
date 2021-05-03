@@ -43,7 +43,7 @@ export default function CreateVideoList() {
     videoFullList: Array<{ [x: string]: string }>
   ) => {
     if (key === 0) {
-      console.log('cannot delete main')
+      // console.log('cannot delete main')
       return
     }
     if (!window.confirm(`Delete video ${Object.keys(selectedVideo)[0]} ?`))

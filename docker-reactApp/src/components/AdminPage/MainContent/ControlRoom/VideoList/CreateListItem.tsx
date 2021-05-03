@@ -35,7 +35,6 @@ export default function CreateListItem(props: Props) {
   const disableDeleteButtonOnLiveVideo = () => {
     let para = document.querySelectorAll<HTMLElement>('[id^="liveIndicator"]')
     para.forEach((item, i) => {
-      console.log('item', item.style.display)
       if (item.style.display === 'flex') {
         props.chooseVideo(i, videoFullList)
         setDeleteIcon(i, 'deleteVideoState')
