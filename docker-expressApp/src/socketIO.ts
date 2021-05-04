@@ -4,10 +4,9 @@ import {
   readFolder,
   readStreamFile,
   createFullVideoObj,
-  // watchStreamFolder
 } from './utils.js'
 import { path, streamPath } from './config'
-import fs, { exists } from 'fs'
+import fs from 'fs'
 
 module.exports = function (io: SocketIOClient.Server) {
   var numClients = 0
@@ -45,28 +44,17 @@ module.exports = function (io: SocketIOClient.Server) {
       io.emit('currentLiveVideoResponse', response)
     })
 
-    socket.on('liveStreamStateRequest', async () => {
-      let liveStream = false
+    //check if live stream file exists
+    setInterval(() => {
       fs.access(streamPath + 'test.m3u8', (error) => {
         if (error) {
-          console.log(error)
-          io.emit('liveStreamState', liveStream)
+          console.log("live stream file been deleted")
+          io.emit('liveStreamState', false)
+          return
         }
+        console.log("live stream file been created")
+        io.emit('liveStreamState', true)
       })
-      console.log('exists')
-      fs.watchFile(streamPath + 'test.m3u8', async (eventType) => {
-        console.log("WATCH STREAM FOLDER", eventType.dev);
-
-        if (eventType.dev !== 0) {
-          liveStream = true
-          io.emit('liveStreamState', liveStream)
-        }
-        if (eventType.dev === 0) {
-          liveStream = false
-          io.emit('liveStreamState', liveStream)
-        }
-
-      })
-    })
+    }, 3000)
   })
 }

@@ -6,7 +6,7 @@ import {
   StreamsProps,
   UserStreamDataProps,
 } from './types.js'
-import {uploadPath,path} from './config'
+import { uploadPath, path } from './config'
 // Reads data from file and parse them to an object
 // return the object
 export const readFile = async (file: string) => {
@@ -90,7 +90,7 @@ export const readFolder = async () => {
 
 export const readStreamFile = async () => {
   let fileLinks: StreamsProps
-  const response = await readFile(path+'streamList.json')
+  const response = await readFile(path + 'streamList.json')
   fileLinks = response.streams
   return fileLinks
 }
@@ -136,14 +136,3 @@ export const checkFileTypeM3u8 = (videoInputLink: string) => {
     return false
   }
 }
-// watch mounted stream folder for the live stream file 
-// export const watchStreamFolder = async () => {
-//   fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
-//     // console.log("WATCH STREAM FOLDER", eventType.dev);
-//     let liveStream = false;
-//     if (eventType.dev !== 0) {
-//       liveStream = true
-//     }
-//   })
-// }
-

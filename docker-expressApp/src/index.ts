@@ -1,8 +1,8 @@
-import express from "express";
-import upload from "express-fileupload";
-import fs from "fs";
-import userAuth from "./userAuth.js";
-import { readFile, createFullVideoObj } from "./utils.js";
+import express from 'express'
+import upload from 'express-fileupload'
+import fs from 'fs'
+import userAuth from './userAuth.js'
+import { readFile, createFullVideoObj } from './utils.js'
 import {
   loginValidation,
   changeUserDetails,
@@ -11,108 +11,94 @@ import {
   deleteVideo,
   uploadVideoFile,
   addLiveStreamLink,
-  saveLiveVideo
-} from "./routesCallbacks.js";
-import SocketIOClient from "socket.io";
-import { port, path, uploadPath} from "./config.js";
+  saveLiveVideo,
+} from './routesCallbacks.js'
+import SocketIOClient from 'socket.io'
+import { port, path, uploadPath } from './config.js'
 
-const app = express();
-const server = require("http").Server(app);
+const app = express()
+const server = require('http').Server(app)
 
-const io: SocketIOClient.Server = require("socket.io")(server, {
+const io: SocketIOClient.Server = require('socket.io')(server, {
   cors: {
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-  }
-});
-require("./socketIO")(io);
-app.use(upload());
-app.use(express.urlencoded());
-app.use(express.json());
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  },
+})
+require('./socketIO')(io)
+app.use(upload())
+app.use(express.urlencoded())
+app.use(express.json())
 app.use(function (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
 ) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000') // update to match the domain you will make the request from
   res.header(
-    "Access-Control-Allow-Headers",
-    "Authorization, Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("user");
-  next();
-});
+    'Access-Control-Allow-Headers',
+    'Authorization, Origin, X-Requested-With, Content-Type, Accept'
+  )
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.header('user')
+  next()
+})
 
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/uploads", express.static(uploadPath));
+app.use('/uploads', express.static(uploadPath))
 
 ////////////////////////////////////////////////////////////////////
 
 // On client Login submit event is check the user name and password
 // responds to the client with a valid message for each case
-app.post("/login", loginValidation);
+app.post('/login', loginValidation)
 
 // app.get("/api", async ()=> await readFile("../dist/api/userDetails.json")) /////////
 
 // On change user details submit event is check the user name and password
 // responds to the client with a valid message for each case
-app.post("/change_user_details", userAuth, changeUserDetails);
+app.post('/change_user_details', userAuth, changeUserDetails)
 
 // On change user details submit event is check the user name and password
 // responds to the client with a valid message for each case
 // plain users has not access to add user functionality
-app.post("/add_user", userAuth, addUser, async () => {
-  io.emit("getUserListResponse", await readFile(path+"userDetails.json"));
-});
+app.post('/add_user', userAuth, addUser, async () => {
+  io.emit('getUserListResponse', await readFile(path + 'userDetails.json'))
+})
 
 // On delete user submit event is check the user name and password
 // responds to the client with a valid message for each case
 // admin users cannot be deleted
 // plain users has not access to add user functionality
-app.post("/delete_user", userAuth, deleteUser, async () => {
-  io.emit("getUserListResponse", await readFile(path+"userDetails.json"));
-});
+app.post('/delete_user', userAuth, deleteUser, async () => {
+  io.emit('getUserListResponse', await readFile(path + 'userDetails.json'))
+})
 
 // The current live video been saved to database
 // for use doesn't depend on the admin app
-app.post("/saveLiveVideo", userAuth, saveLiveVideo, async () => {
-  io.emit("currentLiveVideoResponse", await readFile(path+"currentLiveVideo.json"));
-});
+app.post('/saveLiveVideo', userAuth, saveLiveVideo, async () => {
+  io.emit(
+    'currentLiveVideoResponse',
+    await readFile(path + 'currentLiveVideo.json')
+  )
+})
 
 // Deletes video from server or removes stream link from stream file
-app.post("/delete_video", userAuth, deleteVideo, async () => {
-  io.emit("fullVideoList", await createFullVideoObj());
-});
+app.post('/delete_video', userAuth, deleteVideo, async () => {
+  io.emit('fullVideoList', await createFullVideoObj())
+})
 
 //
-app.post("/upload_video_file", userAuth, uploadVideoFile, async () => {
-  io.emit("fullVideoList", await createFullVideoObj());
-});
+app.post('/upload_video_file', userAuth, uploadVideoFile, async () => {
+  io.emit('fullVideoList', await createFullVideoObj())
+})
 //
 
-app.post("/add_live_stream_link", userAuth, addLiveStreamLink, async () => {
-  io.emit("fullVideoList", await createFullVideoObj());
-});
+app.post('/add_live_stream_link', userAuth, addLiveStreamLink, async () => {
+  io.emit('fullVideoList', await createFullVideoObj())
+})
 
-// // watch mounted stream folder for the live stream file 
-// const watchStreamFile = () => {
-//   console.log("watch file")
-//   fs.watchFile(__dirname + "/stream/test.m3u8", async (eventType) => {
-//     console.log("WATCH STREAM FOLDER", eventType.dev);
-//     let liveStream = false;
-//     if (eventType.dev !== 0) {
-//       liveStream = true
-//     }
-//     io.emit("liveStreamState", liveStream);
-//   })
-// }
-// watchStreamFile()
-
-server.listen(port, console.log(`running at ${port}`));
-
-
-
+server.listen(port, console.log(`running at ${port}`))
 
 //userDetails.json//
 // {
