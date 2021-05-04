@@ -50,7 +50,7 @@ export default function VideoPlayer() {
         <ReactPlayer
           className={classes.videoPlayer}
           controls
-          auto
+          playing
           muted
           loop
           url={videoUrlSrc}
