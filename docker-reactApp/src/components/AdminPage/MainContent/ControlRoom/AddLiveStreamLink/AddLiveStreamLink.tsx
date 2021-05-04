@@ -14,19 +14,20 @@ export default function AddLiveStreamLink() {
   const handleShow = () => setShow(true)
   const { request } = useAxiosRequest()
   const [loginMessage, setLoginMessage] = useState('')
+  const [streamData, setStreamData] = useState<SaveStreamProps>({ ['']: '' })
+
   const saveStreamLink = async (data: SaveStreamProps | undefined) => {
     if (!Object.values(data)[0].endsWith('.m3u8')) return
     const response = await request('post', '/add_live_stream_link', data)
     setLoginMessage(response.data)
   }
-  const [streamData, setStreamData] = useState<SaveStreamProps>({ ['']: '' })
 
   const setStreamName: FormControlProps['onChange'] = (event) => {
-    if (!streamData || streamData === undefined ) return
+    if (!streamData || streamData === undefined) return
     setStreamData({ [event.target.value]: Object.values(streamData)[0] })
   }
   const setStreamUrl: FormControlProps['onChange'] = (event) => {
-    if (!streamData || streamData === undefined ) return
+    if (!streamData || streamData === undefined) return
     setStreamData({ [Object.keys(streamData)[0]]: event.target.value })
   }
 
@@ -39,7 +40,13 @@ export default function AddLiveStreamLink() {
   }
   return (
     <>
-      <Container className={classes.container} onClick={handleShow}>
+      <Container
+        className={classes.container}
+        onClick={() => {
+          handleShow()
+          setLoginMessage('')
+        }}
+      >
         <i className={classes.linkIcon} />
         <h1 className={classes.addLiveStream}>Add a live stream link</h1>
       </Container>

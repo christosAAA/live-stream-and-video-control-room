@@ -188,19 +188,14 @@ export const deleteUser: express.RequestHandler = async (req, res, next) => {
 export const saveLiveVideo: express.RequestHandler = async (req, res, next) => {
   let userInputCurrentVideo = req.body
   let userInputCurrentVideoStr = JSON.stringify(userInputCurrentVideo)
-  await saveFile(
-    path + 'currentLiveVideo.json',
-    userInputCurrentVideoStr
-  )
+  await saveFile(path + 'currentLiveVideo.json', userInputCurrentVideoStr)
   res.send('file been saved')
   next()
 }
 
 export const deleteVideo: express.RequestHandler = async (req, res, next) => {
   let currentVideoFromRequest = req.body.currentVideo
-  let currentVideoFromFile = await readFile(
-    path + 'currentLiveVideo.json'
-  )
+  let currentVideoFromFile = await readFile(path + 'currentLiveVideo.json')
   currentVideoFromFile = Object.values(currentVideoFromFile)[0]
 
   if (currentVideoFromRequest === currentVideoFromFile) {
@@ -251,17 +246,14 @@ export const uploadVideoFile = (
   if (fileObject) {
     let filename = fileObject.name
 
-    fileObject.mv(
-      uploadPath + filename,
-      async function (err: Error) {
-        if (err) {
-          res.send('error')
-        } else {
-          res.send('File Uploaded')
-          next()
-        }
+    fileObject.mv(uploadPath + filename, async function (err: Error) {
+      if (err) {
+        res.send('error')
+      } else {
+        res.send('File Uploaded')
+        next()
       }
-    )
+    })
   }
 }
 
