@@ -5,8 +5,8 @@ import {
   readStreamFile,
   createFullVideoObj,
 } from './utils.js'
-import { path, streamPath } from './config'
-import fs from 'fs'
+import { path } from './config'
+
 
 module.exports = function (io: SocketIOClient.Server) {
   var numClients = 0
@@ -44,17 +44,5 @@ module.exports = function (io: SocketIOClient.Server) {
       io.emit('currentLiveVideoResponse', response)
     })
 
-    //check if live stream file exists
-    setInterval(() => {
-      fs.access(streamPath + 'test.m3u8', (error) => {
-        if (error) {
-          console.log('live stream file been deleted')
-          io.emit('liveStreamState', false)
-          return
-        }
-        console.log('live stream file been created')
-        io.emit('liveStreamState', true)
-      })
-    }, 3000)
   })
 }

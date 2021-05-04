@@ -1,7 +1,7 @@
 import express from 'express'
 import upload from 'express-fileupload'
-import fs from 'fs'
 import userAuth from './userAuth.js'
+import fs from "fs"
 import { readFile, createFullVideoObj } from './utils.js'
 import {
   loginValidation,
@@ -14,7 +14,7 @@ import {
   saveLiveVideo,
 } from './routesCallbacks.js'
 import SocketIOClient from 'socket.io'
-import { port, path, uploadPath } from './config.js'
+import { port, path, uploadPath, streamPath } from './config.js'
 
 const app = express()
 const server = require('http').Server(app)
@@ -97,6 +97,19 @@ app.post('/upload_video_file', userAuth, uploadVideoFile, async () => {
 app.post('/add_live_stream_link', userAuth, addLiveStreamLink, async () => {
   io.emit('fullVideoList', await createFullVideoObj())
 })
+
+//check if live stream file exists
+setInterval(() => {
+  fs.access(streamPath + 'test.m3u8', (error) => {
+    if (error) {
+      console.log('live stream file been deleted')
+      io.emit('liveStreamState', false)
+      return
+    }
+    console.log('live stream file been created')
+    io.emit('liveStreamState', true)
+  })
+}, 3000)
 
 server.listen(port, console.log(`running at ${port}`))
 

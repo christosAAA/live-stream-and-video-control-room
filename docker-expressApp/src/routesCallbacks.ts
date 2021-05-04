@@ -13,6 +13,7 @@ import { currentUserId } from './currentUser.js'
 import express from 'express'
 import upload from 'express-fileupload'
 import { path, uploadPath } from './config'
+
 export const loginValidation = async (
   loginFormData: express.Request,
   response: express.Response
