@@ -17,7 +17,7 @@ services:
     build: ../docker-reverseProxy
     image: "reverseproxy:1.0.0"
   rtmp:
-    build: ../docker_rtmpServer
+    build: ../docker-rtmpServer
     image: "rtmp"
     volumes: 
       - stream:/var/www/
