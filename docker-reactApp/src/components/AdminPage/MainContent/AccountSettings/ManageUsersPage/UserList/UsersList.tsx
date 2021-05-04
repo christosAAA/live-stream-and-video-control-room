@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useUsersInfo } from '../../../../../../hooks/useUsersInfo'
 import { useAxiosRequest } from '../../../../../../hooks/useAxiosRequest'
@@ -24,7 +24,6 @@ export default function UsersList() {
     prev?: number,
     setPrev?: React.Dispatch<React.SetStateAction<number>>
   ) => {
-
     if (state === 'chooseVideo') {
       let deleteIconButtonPrev = document.getElementById(`deleteIconUL${prev}`)
       if (deleteIconButtonPrev) {
@@ -46,7 +45,7 @@ export default function UsersList() {
     const userId = 'user' + (key + 1)
     // check if user is admin for the list Badge
     let admin = false
-    if (userStatus == 'admin') {
+    if (userStatus === 'admin') {
       admin = true
     }
     return (
@@ -54,13 +53,11 @@ export default function UsersList() {
         className={classes.listGroup}
         action
         key={key}
-        // style={{ borderColor: "white" }}
         onClick={() => setDeleteIcon(key, 'chooseVideo', prev, setPrev)}
       >
-        {/* <div className={classes.userNameBagde}> */}
-          {userName}
-          {admin ? <div className={classes.bagde}>{userStatus}</div> : ''}
-          {admin ? (
+        {userName}
+        {admin ? <div className={classes.bagde}>{userStatus}</div> : ''}
+        {admin ? (
           ''
         ) : (
           <i
@@ -69,8 +66,6 @@ export default function UsersList() {
             onClick={() => deleteUser(`${userId}`, userName)}
           />
         )}
-        {/* </div> */}
-        {/* <i className={classes.deleteIcon} /> */}
       </ListGroup.Item>
     )
   })

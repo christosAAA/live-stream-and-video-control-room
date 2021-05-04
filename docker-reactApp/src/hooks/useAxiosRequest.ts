@@ -3,7 +3,6 @@ import axios, { Method } from 'axios'
 import { CurrentUserContext } from '../contexts/CurrentUserCreateContext'
 import { api_base } from '../config'
 
-const headers = { User: 'chris' }
 export type LoginFormData = {
   userName: string
   password: string

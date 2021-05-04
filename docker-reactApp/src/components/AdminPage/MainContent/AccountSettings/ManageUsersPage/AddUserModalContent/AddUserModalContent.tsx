@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Container, Form, FormControlProps } from 'react-bootstrap'
-import { useSocket } from '../../../../../../contexts/SocketProvider'
 import { useAxiosRequest } from '../../../../../../hooks/useAxiosRequest'
 import classes from './AddUserModalContent.module.css'
 
@@ -16,7 +15,6 @@ export type LoginResponseData = {
 }
 
 export default function AddUserModalContent() {
-  const { socket } = useSocket()
   const { request } = useAxiosRequest()
   const [loginMessage, setLoginMessage] = useState('')
   const [loginUserData, setLoginUserData] = useState<LoginFormData>({
