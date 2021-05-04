@@ -18,10 +18,6 @@ export default function VideoPlayerComp() {
     socket.on('liveStreamState', async (data: boolean) => {
         setLiveStream(data)
     })
-
-    return () => {
-      socket.off('liveStreamState')
-    }
   }, [socket])
 
   useEffect(() => {
