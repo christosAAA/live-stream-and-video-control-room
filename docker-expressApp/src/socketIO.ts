@@ -45,15 +45,26 @@ module.exports = function (io: SocketIOClient.Server) {
     })
 
     //check if live stream file exists
+    let state = false
+    let prevState = false
     setInterval(() => {
       fs.access(streamPath + 'test.m3u8', (error) => {
         if (error) {
-          console.log("live stream file been deleted")
-          io.emit('liveStreamState', false)
+          state = false
+          console.log('live stream file been deleted')
+          if (state !== prevState) {
+            io.emit('liveStreamState', false)
+            prevState = false
+          }
+
           return
         }
-        console.log("live stream file been created")
-        io.emit('liveStreamState', true)
+        state = true
+        console.log('live stream file been created')
+        if (state !== prevState) {
+          io.emit('liveStreamState', true)
+          prevState = true
+        }
       })
     }, 3000)
   })
