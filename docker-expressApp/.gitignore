@@ -1,5 +1,5 @@
 /node_modules
 /dist/src
 !/dist/src/api
-!/dist/src/stream
 !/dist/src/uploads
+!/dist/src/stream
