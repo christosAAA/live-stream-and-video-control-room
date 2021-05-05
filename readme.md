@@ -1,9 +1,7 @@
 # live-stream-and-video-control-room
 ---
-
-#####Video control room for on the fly switch between live-streaming broadcasts and static videos files.
-
-#####End user(audience) page for project embedding.
+Video control room for on the fly switch between live-streaming broadcasts and static videos files.
+End user(audience) page for project embedding.
 
 First release. Further development and updates to follow.
 Feedback and/or recommendations definitely welcomed!
