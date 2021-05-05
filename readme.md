@@ -114,8 +114,7 @@ password: admin
 ###### 2.2.3.1 Add live stream link button
 - Provides the ability to add an extrernal stream source(not from the source application rtmp server).
 - It should be provided from a similar rtmp server that generates a m3u8(HLS) stream file.
-
-<img src="./readme-files/add-link.png" width="497" height="524">
+![](./readme-files/add-link.png)
 
 ###### 2.2.3.2 Upload static video file button
 - Upload files form your local drive.
@@ -132,15 +131,15 @@ client_max_body_size 150M;
 - The lists includes three types of elements:
 **1.source live-stream**
 Is always the first element, is marked with link icon and has the default name "live stream". This element cannot be deleted.
-<img src="./readme-files/live-stream-default.png" width="430" height="44">
+![](./readme-files/live-stream-default.png)
 **2.live stream**
 Can be added from the user with custom name, is marked with link icon.
-<img src="./readme-files/live-stream.png" width="430" height="44">
+![](./readme-files/live-stream.png)
 **3.static video file**
 - After upload the elements appears in the list with the name of the video file without the extention.
 - On selection the delete icon appears giving the ability to delete the element. Apllies also for the live-stream element.
 - Live icon tag appears on the element that is currently live-broadcast.
-<img src="./readme-files/live-tag.png" width="430" height="44">
+![](./readme-files/live-tag.png)
 
 ###### 2.2.3.4 Stream/video preview area
 - Preview of the selected stream/video.
@@ -157,22 +156,19 @@ Can be added from the user with custom name, is marked with link icon.
 ###### 2.2.3.1 Change User Name and Password
 - Updates users credentials.
 
-<img src="./readme-files/change-pass.png" width="553" height="472">
+![](./readme-files/change-pass.png)
 
 ###### 2.2.3.2 Manage Users
 - Access only from Admin user.
 
-<img src="./readme-files/manage-user.png" width="512" height="370">
+![](./readme-files/manage-user.png)
 
 - Add users 
 
-<img src="./readme-files/add-user.png" width="497" height="525">
+![](./readme-files/add-user.png)
 
 - delete user
 Select the user you want to delete.
 Admin user cannot be deleted.
 
-<img src="./readme-files/delete-user.png" width="518" height="345">
-
-
-
+![](./readme-files/delete-user.png)
