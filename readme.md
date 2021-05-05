@@ -2,9 +2,9 @@
 ---
 Happy to present my first open-source project:
 
-#####Video control room for switching between live-stream broadcast and static video files in realtime. 
+Video control room for switching between live-stream broadcast and static video files in realtime. 
 
-#####Provides also an end-user(audience) page which can be embeded in your project.
+Provides also an end-user(audience) page which can be embeded in your project.
 
 This is the first release and I will continue developing and updating this application.
 If you have any questions or feedback please let me know.
@@ -129,13 +129,13 @@ client_max_body_size 150M;
 
 ###### 2.2.3.3 Stream/video list
 - The lists includes three types of elements:
-**1.source live-stream**
+- 1.source live-stream
 Is always the first element, is marked with link icon and has the default name "live stream". This element cannot be deleted.
 ![](./readme-files/live-stream-default.png)
-**2.live stream**
+- 2.live stream
 Can be added from the user with custom name, is marked with link icon.
 ![](./readme-files/live-stream.png)
-**3.static video file**
+- 3.static video file
 - After upload the elements appears in the list with the name of the video file without the extention.
 - On selection the delete icon appears giving the ability to delete the element. Apllies also for the live-stream element.
 - Live icon tag appears on the element that is currently live-broadcast.
