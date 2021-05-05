@@ -1,22 +1,20 @@
 # live-stream-and-video-control-room
 ---
-Happy to present my first open-source project:
 
-Video control room for switching between live-stream broadcast and static video files in realtime. 
+#####Video control room for on the fly switch between live-streaming broadcasts and static videos files.
 
-Provides also an end-user(audience) page which can be embeded in your project.
+#####End user(audience) page for project embedding.
 
-This is the first release and I will continue developing and updating this application.
-If you have any questions or feedback please let me know.
-Enjoy!!
+First release. Further development and updates to follow.
+Feedback and/or recommendations definitely welcomed!
 
 ## About this repository
 ---
-This repository consists of five parts:
+The repository consists of five parts:
 - `backend` - express server, socket.io, written with Typescript, fetching data from "upload" and "stream" folders and from three json files:
-currentLiveVideo
-streamList
-userDetails
+"currentLiveVideo",
+"streamList",
+"userDetails"
 - `client` - react client, written with Typescript, Hooks, Context fetching data from the backend and mounted local folders:
 "upload" and "stream" 
 - `revproxy` - nginx reverse proxy server, serves the backend and frontend applications.
@@ -129,17 +127,19 @@ client_max_body_size 150M;
 
 ###### 2.2.3.3 Stream/video list
 - The lists includes three types of elements:
-- 1.source live-stream
-Is always the first element, is marked with link icon and has the default name "live stream". This element cannot be deleted.
+1.source live-stream
+- Is always the first element, is marked with link icon and has the default name "live stream". This element cannot be deleted.
 
 ![](./readme-files/live-stream-default.png)
 
-- 2.live stream
-Can be added from the user with custom name, is marked with link icon.
+2.live-stream
+- Can be added from the user with custom name, is marked with link icon.
+- An example link is been added "user test stream": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8".
+- The example link can be deleted
 
 ![](./readme-files/live-stream.png)
 
-- 3.static video file
+3.static video file
 - After upload the elements appears in the list with the name of the video file without the extention.
 - On selection the delete icon appears giving the ability to delete the element. Apllies also for the live-stream element.
 - Live icon tag appears on the element that is currently live-broadcast.
@@ -177,3 +177,12 @@ Select the user you want to delete.
 Admin user cannot be deleted.
 
 ![](./readme-files/delete-user.png)
+
+###### 3 Live stream
+- Stream to source rtmp server through: http://localhost:1936/live/test
+- Where "test" is the streaming key.
+- At the moment is the default key and cannot be changed through the application,
+only through source code.
+- OBS example:
+
+![](./readme-files/obs-example.png)

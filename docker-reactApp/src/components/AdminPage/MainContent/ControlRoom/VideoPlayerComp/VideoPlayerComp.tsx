@@ -15,10 +15,17 @@ export default function VideoPlayerComp() {
   const [liveStream, setLiveStream] = useState(false)
 
   useEffect(() => {
+    let prevStreamStatus = false
     socket.on('liveStreamState', async (data: boolean) => {
-        setLiveStream(data)
+      setLiveStream(data)
+      if (data !== prevStreamStatus) {
+        prevStreamStatus = data
+      }
     })
-  }, [socket])
+    if (prevStreamStatus) {
+      setUrl(streamPath + selectedVideoUrl)
+    }
+  }, [socket,selectedVideo])
 
   useEffect(() => {
     let videoUrlSrc = ''
@@ -58,8 +65,9 @@ export default function VideoPlayerComp() {
           ) : (
             <div className={classes.videoWrapper}>
               <span id='liveLabel' className={classes.liveLabel}>
-                please start your live stream http://localhost:1936/live/test{' '}
-                <br /> replace locahost with your url
+                http://localhost:1936/live/test
+                <br /> please start your live stream, replace locahost with your
+                url
               </span>
               <ReactPlayer controls loop url={url} />
             </div>
