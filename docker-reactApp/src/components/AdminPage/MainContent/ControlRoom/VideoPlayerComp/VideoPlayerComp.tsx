@@ -21,11 +21,11 @@ export default function VideoPlayerComp() {
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
       }
+      if (prevStreamStatus) {
+        setUrl(streamPath + selectedVideoUrl)
+      }
     })
-    if (prevStreamStatus) {
-      setUrl(streamPath + selectedVideoUrl)
-    }
-  }, [socket,selectedVideo])
+  }, [socket, selectedVideo])
 
   useEffect(() => {
     let videoUrlSrc = ''
