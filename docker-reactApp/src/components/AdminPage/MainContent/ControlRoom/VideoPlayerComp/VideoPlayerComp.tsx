@@ -60,7 +60,7 @@ export default function VideoPlayerComp() {
                 <br /> please start your live stream, replace locahost with your
                 url
               </span>
-              <ReactPlayer controls />
+              <ReactPlayer controls loop url={liveStreamUrl} />
             </div>
           )}
         </div>
