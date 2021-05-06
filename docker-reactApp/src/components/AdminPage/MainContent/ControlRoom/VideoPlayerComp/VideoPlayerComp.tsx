@@ -35,10 +35,7 @@ export default function VideoPlayerComp() {
       setLiveStream(data)
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
-        if (
-          selectedVideoUrl.endsWith('.m3u8') &&
-          !selectedVideoUrl.startsWith('http')
-        ) {
+        if (selectedVideoUrl.endsWith('test.m3u8')) {
           setLiveStreamUrl(streamPath + selectedVideoUrl)
         }
       }
@@ -54,7 +51,7 @@ export default function VideoPlayerComp() {
     //   const videoUrlSrcA = streamPath + selectedVideoUrl
     //   setLiveStreamUrl(videoUrlSrcA)
     // }
-    if (selectedVideoUrl.startsWith('http')) {
+    if (selectedVideoUrl.endsWith('.m3u8')) {
       videoUrlSrc = selectedVideoUrl
       setUrl(videoUrlSrc)
     }
