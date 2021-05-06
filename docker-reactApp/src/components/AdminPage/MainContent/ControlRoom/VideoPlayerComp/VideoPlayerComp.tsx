@@ -13,6 +13,7 @@ export default function VideoPlayerComp() {
   const selectedVideoName = Object.keys(selectedVideo)[0]
   const selectedVideoUrl = Object.values(selectedVideo)[0]
   const [liveStream, setLiveStream] = useState(false)
+  const [liveStreamUrl, setLiveStreamUrl] = useState("")
 
   useEffect(() => {
     let prevStreamStatus = false
@@ -20,7 +21,7 @@ export default function VideoPlayerComp() {
       setLiveStream(data)
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
-        setUrl(streamPath + selectedVideoUrl)
+        setLiveStreamUrl(streamPath + selectedVideoUrl)
       }
       // if (prevStreamStatus) {
       //   setUrl(streamPath + selectedVideoUrl)
@@ -62,7 +63,7 @@ export default function VideoPlayerComp() {
       return (
         <div className={classes.videoWrapper}>
           {liveStream ? (
-            <ReactPlayer controls loop url={url} />
+            <ReactPlayer controls loop url={liveStreamUrl} />
           ) : (
             <div className={classes.videoWrapper}>
               <span id='liveLabel' className={classes.liveLabel}>
