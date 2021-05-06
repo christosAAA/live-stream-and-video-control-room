@@ -15,68 +15,47 @@ export default function VideoPlayerComp() {
   const [liveStream, setLiveStream] = useState(false)
   const [liveStreamUrl, setLiveStreamUrl] = useState('')
 
-  // useEffect(() => {
-  //   let prevStreamStatus = false
-  //   socket.on('liveStreamState', async (data: boolean) => {
-  //     setLiveStream(data)
-  //     if (data !== prevStreamStatus) {
-  //       prevStreamStatus = data
-  //       setLiveStreamUrl(streamPath + selectedVideoUrl)
-  //     }
-  //     // if (prevStreamStatus) {
-  //     //   setUrl(streamPath + selectedVideoUrl)
-  //     // }
-  //   })
-  // }, [socket])
-
   useEffect(() => {
+    // default live stream test.m3u8
     let prevStreamStatus = false
     socket.on('liveStreamState', async (data: boolean) => {
       setLiveStream(data)
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
         if (selectedVideoUrl.endsWith('test.m3u8')) {
-          setLiveStreamUrl(streamPath + selectedVideoUrl)
+          setUrl(streamPath + selectedVideoUrl)
         }
       }
-      // if (prevStreamStatus) {
-      //   setUrl(streamPath + selectedVideoUrl)
-      // }
     })
+    // user live stream link
     let videoUrlSrc = ''
-    // if (
-    //   selectedVideoUrl.endsWith('.m3u8') &&
-    //   !selectedVideoUrl.startsWith('http')
-    // ) {
-    //   const videoUrlSrcA = streamPath + selectedVideoUrl
-    //   setLiveStreamUrl(videoUrlSrcA)
-    // }
     if (selectedVideoUrl.endsWith('.m3u8')) {
       videoUrlSrc = selectedVideoUrl
       setUrl(videoUrlSrc)
     }
+    // static video files
     if (selectedVideoUrl.endsWith('.mp4')) {
       videoUrlSrc = uploadPath + selectedVideoUrl
       setUrl(videoUrlSrc)
     }
   }, [socket, selectedVideo])
 
-  const Player = () => {
-    if (selectedVideoUrl.startsWith('http')) {
-      return (
-        <div className={classes.videoWrapper}>
-          <ReactPlayer controls loop url={url} />
-        </div>
-      )
-    }
-    if (
-      selectedVideoUrl.endsWith('.m3u8') &&
-      !selectedVideoUrl.startsWith('http')
-    ) {
+  const Player = (liveStream, urlLink) => {
+    // if (selectedVideoUrl.startsWith('http')) {
+    //   return (
+    //     <div className={classes.videoWrapper}>
+    //       <ReactPlayer controls loop url={url} />
+    //     </div>
+    //   )
+    // }
+    // if (
+    //   selectedVideoUrl.endsWith('.m3u8') &&
+    //   !selectedVideoUrl.startsWith('http')
+    // ) {
       return (
         <div className={classes.videoWrapper}>
           {liveStream ? (
-            <ReactPlayer controls loop url={liveStreamUrl} />
+            <ReactPlayer controls loop url={urlLink} />
           ) : (
             <div className={classes.videoWrapper}>
               <span id='liveLabel' className={classes.liveLabel}>
@@ -84,24 +63,24 @@ export default function VideoPlayerComp() {
                 <br /> please start your live stream, replace locahost with your
                 url
               </span>
-              <ReactPlayer controls loop url={url} />
+              <ReactPlayer controls loop url={urlLink} />
             </div>
           )}
         </div>
       )
-    }
-    if (selectedVideoUrl.endsWith('.mp4')) {
-      return (
-        <div className={classes.videoWrapper}>
-          <ReactPlayer controls loop url={url} />
-        </div>
-      )
-    }
+    // }
+    // if (selectedVideoUrl.endsWith('.mp4')) {
+    //   return (
+    //     <div className={classes.videoWrapper}>
+    //       <ReactPlayer controls loop url={url} />
+    //     </div>
+    //   )
+    // }
   }
 
   return (
     <div style={{ paddingTop: '66px' }}>
-      <Player />
+      <Player liveStream={liveStream} url={url}/>
       <div className={classes.videoFooter}>
         <div className={classes.videoTitle}>{selectedVideoName}</div>
         <PublishVideoButton />
