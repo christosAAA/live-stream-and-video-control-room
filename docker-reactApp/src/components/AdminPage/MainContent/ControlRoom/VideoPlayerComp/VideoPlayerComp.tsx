@@ -20,10 +20,11 @@ export default function VideoPlayerComp() {
       setLiveStream(data)
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
-      }
-      if (prevStreamStatus) {
         setUrl(streamPath + selectedVideoUrl)
       }
+      // if (prevStreamStatus) {
+      //   setUrl(streamPath + selectedVideoUrl)
+      // }
     })
   }, [socket, selectedVideo])
 
