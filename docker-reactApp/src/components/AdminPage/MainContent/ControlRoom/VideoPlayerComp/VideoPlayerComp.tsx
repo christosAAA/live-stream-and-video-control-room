@@ -23,7 +23,7 @@ export default function VideoPlayerComp() {
       if (data !== prevStreamStatus) {
         prevStreamStatus = data
         if (selectedVideoUrl.endsWith('test.m3u8')) {
-          setUrl(streamPath + selectedVideoUrl)
+          setLiveStreamUrl(streamPath + selectedVideoUrl)
         }
       }
     })
@@ -40,22 +40,19 @@ export default function VideoPlayerComp() {
     }
   }, [socket, selectedVideo])
 
-  const Player = (liveStream, urlLink) => {
-    // if (selectedVideoUrl.startsWith('http')) {
-    //   return (
-    //     <div className={classes.videoWrapper}>
-    //       <ReactPlayer controls loop url={url} />
-    //     </div>
-    //   )
-    // }
-    // if (
-    //   selectedVideoUrl.endsWith('.m3u8') &&
-    //   !selectedVideoUrl.startsWith('http')
-    // ) {
+  const Player = () => {
+    if (selectedVideoUrl.startsWith('http')) {
+      return (
+        <div className={classes.videoWrapper}>
+          <ReactPlayer controls loop url={url} />
+        </div>
+      )
+    }
+    if (selectedVideoUrl.endsWith('test.m3u8')) {
       return (
         <div className={classes.videoWrapper}>
           {liveStream ? (
-            <ReactPlayer controls loop url={urlLink} />
+            <ReactPlayer controls loop url={liveStreamUrl} />
           ) : (
             <div className={classes.videoWrapper}>
               <span id='liveLabel' className={classes.liveLabel}>
@@ -63,24 +60,24 @@ export default function VideoPlayerComp() {
                 <br /> please start your live stream, replace locahost with your
                 url
               </span>
-              <ReactPlayer controls loop url={urlLink} />
+              <ReactPlayer controls />
             </div>
           )}
         </div>
       )
-    // }
-    // if (selectedVideoUrl.endsWith('.mp4')) {
-    //   return (
-    //     <div className={classes.videoWrapper}>
-    //       <ReactPlayer controls loop url={url} />
-    //     </div>
-    //   )
-    // }
+    }
+    if (selectedVideoUrl.endsWith('.mp4')) {
+      return (
+        <div className={classes.videoWrapper}>
+          <ReactPlayer controls loop url={url} />
+        </div>
+      )
+    }
   }
 
   return (
     <div style={{ paddingTop: '66px' }}>
-      <Player liveStream={liveStream} url={url}/>
+      <Player />
       <div className={classes.videoFooter}>
         <div className={classes.videoTitle}>{selectedVideoName}</div>
         <PublishVideoButton />
