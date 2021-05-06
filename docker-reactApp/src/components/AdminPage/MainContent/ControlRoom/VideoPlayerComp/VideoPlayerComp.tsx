@@ -27,7 +27,7 @@ export default function VideoPlayerComp() {
       //   setUrl(streamPath + selectedVideoUrl)
       // }
     })
-  }, [socket, selectedVideo])
+  }, [socket])
 
   useEffect(() => {
     let videoUrlSrc = ''
