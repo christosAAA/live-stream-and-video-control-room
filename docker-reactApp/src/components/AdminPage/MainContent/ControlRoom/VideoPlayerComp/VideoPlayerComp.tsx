@@ -15,6 +15,20 @@ export default function VideoPlayerComp() {
   const [liveStream, setLiveStream] = useState(false)
   const [liveStreamUrl, setLiveStreamUrl] = useState("")
 
+  // useEffect(() => {
+  //   let prevStreamStatus = false
+  //   socket.on('liveStreamState', async (data: boolean) => {
+  //     setLiveStream(data)
+  //     if (data !== prevStreamStatus) {
+  //       prevStreamStatus = data
+  //       setLiveStreamUrl(streamPath + selectedVideoUrl)
+  //     }
+  //     // if (prevStreamStatus) {
+  //     //   setUrl(streamPath + selectedVideoUrl)
+  //     // }
+  //   })
+  // }, [socket])
+
   useEffect(() => {
     let prevStreamStatus = false
     socket.on('liveStreamState', async (data: boolean) => {
@@ -27,9 +41,6 @@ export default function VideoPlayerComp() {
       //   setUrl(streamPath + selectedVideoUrl)
       // }
     })
-  }, [socket])
-
-  useEffect(() => {
     let videoUrlSrc = ''
     if (
       selectedVideoUrl.endsWith('.m3u8') &&
@@ -46,7 +57,7 @@ export default function VideoPlayerComp() {
       videoUrlSrc = uploadPath + selectedVideoUrl
       setUrl(videoUrlSrc)
     }
-  }, [selectedVideo])
+  }, [socket,selectedVideo])
 
   const Player = () => {
     if (selectedVideoUrl.startsWith('http')) {
