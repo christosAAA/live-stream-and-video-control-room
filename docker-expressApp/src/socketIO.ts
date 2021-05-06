@@ -48,7 +48,7 @@ module.exports = function (io: SocketIOClient.Server) {
     setInterval(() => {
       fs.access(streamPath + 'test.m3u8', (error) => {
         if (error) {
-          console.log('live stream file been deleted')
+          // console.log('live stream file been deleted')
           io.emit('liveStreamState', false)
           return
         }
