@@ -42,13 +42,13 @@ export default function VideoPlayerComp() {
       // }
     })
     let videoUrlSrc = ''
-    if (
-      selectedVideoUrl.endsWith('.m3u8') &&
-      !selectedVideoUrl.startsWith('http')
-    ) {
-      const videoUrlSrcA = streamPath + selectedVideoUrl
-      setLiveStreamUrl(videoUrlSrcA)
-    }
+    // if (
+    //   selectedVideoUrl.endsWith('.m3u8') &&
+    //   !selectedVideoUrl.startsWith('http')
+    // ) {
+    //   const videoUrlSrcA = streamPath + selectedVideoUrl
+    //   setLiveStreamUrl(videoUrlSrcA)
+    // }
     if (selectedVideoUrl.startsWith('http')) {
       videoUrlSrc = selectedVideoUrl
       setUrl(videoUrlSrc)
