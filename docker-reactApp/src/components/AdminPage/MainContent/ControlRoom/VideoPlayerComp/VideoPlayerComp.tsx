@@ -27,7 +27,7 @@ export default function VideoPlayerComp() {
       //   setUrl(streamPath + selectedVideoUrl)
       // }
     })
-  }, [socket, selectedVideo])
+  }, [socket])
 
   useEffect(() => {
     let videoUrlSrc = ''
@@ -36,7 +36,7 @@ export default function VideoPlayerComp() {
       !selectedVideoUrl.startsWith('http')
     ) {
       const videoUrlSrcA = streamPath + selectedVideoUrl
-      setUrl(videoUrlSrcA)
+      setLiveStreamUrl(videoUrlSrcA)
     }
     if (selectedVideoUrl.startsWith('http')) {
       videoUrlSrc = selectedVideoUrl
