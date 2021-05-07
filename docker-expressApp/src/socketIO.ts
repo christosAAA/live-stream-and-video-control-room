@@ -50,7 +50,6 @@ module.exports = function (io: SocketIOClient.Server) {
         if (error) {
           // console.log('live stream file been deleted')
           io.emit('liveStreamState', false)
-          return
         } else {
           console.log('live stream file been created')
           io.emit('liveStreamState', true)
