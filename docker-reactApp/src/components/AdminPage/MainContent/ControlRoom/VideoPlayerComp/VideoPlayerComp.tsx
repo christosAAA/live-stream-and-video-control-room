@@ -27,7 +27,7 @@ useEffect(() => {
           }
         }
       })
-}, [socket, selectedVideo])
+}, [socket])
 
   useEffect(() => {
 
