@@ -1,7 +1,7 @@
 # live-stream-and-video-control-room
 ---
 Video control room for on the fly switch between live-streaming broadcasts and static videos files.
-End user(audience) page for project embedding.
+End user (audience) page for project embedding, included.
 
 First release. Further development and updates to follow.
 Feedback and/or recommendations definitely welcomed!
@@ -19,7 +19,7 @@ The repository consists of five parts:
 - `rtmp` - nginx rtmp server with custom configuration from dvdgiessen/nginx-rtmp-docker(https://hub.docker.com/r/dvdgiessen/nginx-rtmp-docker/).
 - `appproxy` - nginx upstream tcp server which serves the whole application.
 
-## Layout of the project
+## Project layout
 ---
 The app uses `docker compose` with five containers and two volumes.
 The `media volume` mounts the static video files form the backend to the frontend.
@@ -27,7 +27,7 @@ The `stream volume` mounts the live-stream m3u8 file from the rtmp server to bac
 
 ![](./readme-files/app_setup.png)
 
-## Running full application on Remote Server or Locally in production mode
+## Remote Server or Local run (Production mode)
 ---
 You need to have [`node`], [`yarn`], [`docker`], [`docker-compose`] installed on the workstation.
 ```
@@ -43,7 +43,7 @@ docker volume rm docker-compose_stream
 - Tested on Ubuntu server and locally on windows machine.
 - On AWS free tier the build will be time-consuming because of cpu lack.
 
-## Running only frontend and backend for local development
+## Run for local development (Only frontend and backend)
 ---
 You need to have [`node`] and [`yarn`] installed on the workstation.
 
@@ -59,9 +59,9 @@ yarn
 yarn dev
 ```
 - Free ports on localhost: 5000, 3000.
-- On this setup you cannot test the rtmp server and as result the live stream functionality.
-- Files will be auto-update.
-- On Linux machine you will need to change on both package.json files(docker-expressApp, docker-reactApp):
+- In this setup you cannot test the rtmp server therefore the live-stream functionality.
+- The files will be auto-updated.
+- In Linux you will need to change the following to both package.json files(docker-expressApp, docker-reactApp):
 ```
 set NODE_ENV="production or development"&&
 to
@@ -69,23 +69,23 @@ NODE_ENV="production or development"
 ```
 ## Using the application
 ---
-- The application been served under two route "localhost/" and "localhost/admin".
-- Suggested browser Google Chrome.
+- The application is been served through "localhost/" and "localhost/admin".
+- For full functionality the use of Google Chrome exclusively is strongly recommended.
 
 ### 1 Audience page
-- This page includes the final video output(livestream or static video file).
-- Is accessable on the main route "localhost/" of your server and can be embeded in other web-applications.
+- This page includes the final video output(live stream or static video file).
+- It is accessable through your server's "localhost/" and can be embeded in other web-applications.
 - Includes real-time viewers counter and a live tag when live-streaming is on.
 
 ![](./readme-files/video-landing-page.png)
 
 ### 2 Admin page
-- From this page you can maniplulate all the video/live-stream functionality and the account setting of admin and simple users.
-- Is accessable on the main route "localhost/admin" of your server.
+- Ability to maniplulate all the function of the video/live-stream and the account settings of admin or non-admin users.
+- It is accessable through your server's "localhost/admin".
 
 #### 2.1 Login page
-- You can connect with those credentials for the first login.
-- You can change the credentials afterwards.
+- Use the followin credentials in the first login.
+- Ability to change the credentials at a later stage.
 ```
 username: admin
 password: admin
@@ -93,7 +93,7 @@ password: admin
 ![](./readme-files/login.png)
 
 #### 2.2 Admin page
-- The Admin page is the main page of the application and from here you can maniplulate all the provided functionality.
+- The Admin page is the application's main page where all the functions are available.
 
 ##### 2.2.1 Nav Bar
 - Two buttons for switching between Control Room and Account Settings.
@@ -107,17 +107,17 @@ password: admin
 ![](./readme-files/control-room.png)
 
 ##### 2.2.3 Control Room
-###### 2.2.3.1 Add live stream link button
-- Provides the ability to add an extrernal stream source(not from the source application rtmp server).
+###### 2.2.3.1 Add live-stream link button
+- Provides the ability to add an extrernal stream source (external from the source application rtmp server).
 - It should be provided from a similar rtmp server that generates a m3u8(HLS) stream file.
 ![](./readme-files/add-link.png)
 
 ###### 2.2.3.2 Upload static video file button
 - Upload files form your local drive.
-- For now, doesn't support mulitple files upload.
-- File should be in mp4 format.
-- File size limitation 150MB.
-- Modify the size before build at:
+- Mulitple files upload is currently not supported.
+- The file should be in mp4 format.
+- The file size should not exceed 150MB.
+- The file size limit can be changed only at built with:
 ```
 docker-reverseProxy/config
 client_max_body_size 150M;
@@ -126,21 +126,21 @@ client_max_body_size 150M;
 ###### 2.2.3.3 Stream/video list
 - The lists includes three types of elements:
 1.source live-stream
-- Is always the first element, is marked with link icon and has the default name "live stream". This element cannot be deleted.
+- It is always the first element, marked with a link icon and has the default name: "live stream". This element cannot be deleted.
 
 ![](./readme-files/live-stream-default.png)
 
 2.live-stream
-- Can be added from the user with custom name, is marked with link icon.
-- An example link is been added "user test stream": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8".
-- The example link can be deleted
+- Can be added from the user with custom name, and is marked with a link icon.
+- An example link is provided at built with the name: "user test stream": "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8".
+- The example link can be deleted.
 
 ![](./readme-files/live-stream.png)
 
 3.static video file
-- After upload the elements appears in the list with the name of the video file without the extention.
-- On selection the delete icon appears giving the ability to delete the element. Apllies also for the live-stream element.
-- Live icon tag appears on the element that is currently live-broadcast.
+- After uploaded, the elements appear in the list appearing with the name of the file without the extention.
+- On selection, the appearing delete button provides the correspondent functionality. This also applies for the live-stream element.
+- The live icon tag appears on the element that is being currently broadcasted live.
 
 ![](./readme-files/live-tag.png)
 
@@ -149,10 +149,10 @@ client_max_body_size 150M;
 
 ###### 2.2.3.5 Publish video button
 - Publish the stream/video to the Audience page in real-time.
-- Audience page user doen't need to reload page.
+- Page is being refreshed automatically without the need of a page reload.
 
 ##### 2.2.4 Account Settings
-- Simple user have access only to Change Name and Password section.
+- Non-admin users have only the ability to Change Name and Password section.
 
 ![](./readme-files/account-settings.png)
 
@@ -162,11 +162,11 @@ client_max_body_size 150M;
 ![](./readme-files/change-pass.png)
 
 ###### 2.2.3.2 Manage Users
-- Access only from Admin user.
+- Admin user only.
 
 ![](./readme-files/manage-user.png)
 
-- Add users 
+- Add users.
 
 ![](./readme-files/add-user.png)
 
@@ -178,9 +178,9 @@ Admin user cannot be deleted.
 
 ###### 3 Live stream
 - Stream to source rtmp server through: http://localhost:1936/live/test
+- If ran in server 'localhost' should be replaced with the server's ip.
 - Where "test" is the streaming key.
-- At the moment is the default key and cannot be changed through the application,
-only through source code.
+- At the moment this is the default streaming key and can only be modified in the source code.
 - OBS example:
 
 ![](./readme-files/obs-example.png)
