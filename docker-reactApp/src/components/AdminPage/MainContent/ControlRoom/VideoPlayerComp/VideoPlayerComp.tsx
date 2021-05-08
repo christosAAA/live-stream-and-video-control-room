@@ -27,6 +27,9 @@ export default function VideoPlayerComp() {
             setLiveStreamUrl(streamPath + selectedVideoUrl)
           }
         }
+        return () => {
+          socket.off('liveStreamState')
+        }
       })
 }, [socket])
 
