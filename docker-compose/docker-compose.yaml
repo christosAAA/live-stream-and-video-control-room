@@ -6,7 +6,7 @@ services:
     image: "expressapp:1.0.0"
     volumes: 
       - media:/app/dist/src/uploads
-      - stream:/app/dist/src//stream
+      - stream:/app/dist/src/stream
   frontend:
     build: ../docker-reactApp
     image: "reactapp:1.0.0"

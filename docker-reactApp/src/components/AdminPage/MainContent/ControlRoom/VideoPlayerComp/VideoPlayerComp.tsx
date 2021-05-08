@@ -15,7 +15,8 @@ export default function VideoPlayerComp() {
   const [liveStream, setLiveStream] = useState(false)
   const [liveStreamUrl, setLiveStreamUrl] = useState('')
 
-useEffect(() => {
+  const Player = () => {
+    useEffect(() => {
       // default live stream test.m3u8
       let prevStreamStatus = false
       socket.on('liveStreamState', async (data: boolean) => {
@@ -43,8 +44,6 @@ useEffect(() => {
       setUrl(videoUrlSrc)
     }
   }, [selectedVideo])
-
-  const Player = () => {
     if (selectedVideoUrl.startsWith('http')) {
       return (
         <div className={classes.videoWrapper}>
