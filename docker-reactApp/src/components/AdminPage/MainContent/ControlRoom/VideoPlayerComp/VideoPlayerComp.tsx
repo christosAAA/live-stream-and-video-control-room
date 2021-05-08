@@ -31,7 +31,7 @@ export default function VideoPlayerComp() {
           socket.off('liveStreamState')
         }
       })
-}, [socket])
+}, [socket,selectedVideo])
 
   useEffect(() => {
 
@@ -47,6 +47,7 @@ export default function VideoPlayerComp() {
       setUrl(videoUrlSrc)
     }
   }, [selectedVideo])
+
     if (selectedVideoUrl.startsWith('http')) {
       return (
         <div className={classes.videoWrapper}>
