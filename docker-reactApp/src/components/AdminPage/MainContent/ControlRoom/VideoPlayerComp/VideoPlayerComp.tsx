@@ -23,7 +23,10 @@ export default function VideoPlayerComp() {
         setLiveStream(data)
         if (data !== prevStreamStatus) {
           prevStreamStatus = data
-          if (selectedVideoUrl.endsWith('test.m3u8')) {
+          if(data === false) {
+            setLiveStreamUrl("")
+          }
+          if (data=== true && selectedVideoUrl.endsWith('test.m3u8')) {
             setLiveStreamUrl(streamPath + selectedVideoUrl)
           }
         }
@@ -31,7 +34,7 @@ export default function VideoPlayerComp() {
           socket.off('liveStreamState')
         }
       })
-}, [socket,selectedVideo])
+}, [socket])
 
   useEffect(() => {
 
