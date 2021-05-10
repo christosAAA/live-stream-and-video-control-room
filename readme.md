@@ -125,6 +125,7 @@ client_max_body_size 150M;
 
 ###### 2.2.3.3 Stream/video list
 - The lists includes three types of elements:
+
 1.source live-stream
 - It is always the first element, marked with a link icon and has the default name: "live stream". This element cannot be deleted.
 
