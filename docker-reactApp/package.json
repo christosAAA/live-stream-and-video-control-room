@@ -4,7 +4,7 @@
   "description": "An example react app",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=development&&react-scripts start",
+    "dev": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "start": "NODE_ENV=production react-scripts start",
     "test": "react-scripts test"

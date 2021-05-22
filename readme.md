@@ -29,7 +29,7 @@ The `stream volume` mounts the live-stream m3u8 file from the rtmp server to bac
 
 ## Remote Server or Local run (Production mode)
 ---
-You need to have [`node`], [`yarn`], [`docker`], [`docker-compose`] installed on the workstation.
+You need to have [`docker`], [`docker-compose`] installed on the workstation.
 ```
 cd docker-compose
 docker-compose build
@@ -61,12 +61,15 @@ yarn dev
 - Free ports on localhost: 5000, 3000.
 - In this setup you cannot test the rtmp server therefore the live-stream functionality.
 - The files will be auto-updated.
-- In Linux you will need to change the following to both package.json files(docker-expressApp, docker-reactApp):
+- In Windows you will need to change the following to both package.json files(docker-expressApp, docker-reactApp):
 ```
-set NODE_ENV="production or development"&&
-to
 NODE_ENV="production or development"
+to
+set NODE_ENV="production or development"&&
+
 ```
+- The frontend is running at localhost:3000 and localhost:3000/admin.
+
 ## Using the application
 ---
 - The application is been served through "localhost/" and "localhost/admin".
