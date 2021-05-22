@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "yarn build",
     "start": "set NODE_ENV=production&&nodemon dist/src/index.js",
-    "dev": "set NODE_ENV=development&&nodemon dist/src/index.js",
+    "dev": "tsc && set NODE_ENV=development&&nodemon dist/src/index.js",
     "test": "jest --coverage",
     "release": "docker build -t expressapp:1.0.0 .",
     "compile": "tsc",
