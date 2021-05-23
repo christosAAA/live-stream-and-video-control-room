@@ -56,16 +56,26 @@ yarn watch
 ```
 cd docker-reactApp
 yarn
+yarn build
 yarn dev
 ```
 - Free ports on localhost: 5000, 3000.
 - In this setup you cannot test the rtmp server therefore the live-stream functionality.
 - The files will be auto-updated.
 - In Windows you will need to change the following to both package.json files(docker-expressApp, docker-reactApp):
+
+docker-reactApp/package.json scripts dev
 ```
-NODE_ENV="production or development"
+"NODE_ENV=development react-scripts start"
 to
-set NODE_ENV="production or development"&&
+"set NODE_ENV=development&&react-scripts start"
+
+```
+docker-expressApp/package.json scripts dev
+```
+"tsc NODE_ENV=development nodemon dist/src/index.js"
+to
+"tsc&&set NODE_ENV=development&&nodemon dist/src/index.js"
 
 ```
 - The frontend is running at localhost:3000 and localhost:3000/admin.
