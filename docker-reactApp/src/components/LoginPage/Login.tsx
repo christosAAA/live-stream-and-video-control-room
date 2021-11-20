@@ -3,8 +3,6 @@ import { Form, FormControlProps } from 'react-bootstrap'
 import { useAxiosRequest } from '../../hooks/useAxiosRequest'
 import classes from './Login.module.css'
 
-//comment for push test
-
 export type LoginSubmitProps = {
   onResponse: (loginResponseData: LoginResponseData) => void
 }
