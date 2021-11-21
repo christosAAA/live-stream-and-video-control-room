@@ -8,10 +8,23 @@ import {
 import fs from 'fs'
 import { path, streamPath } from './config'
 
+let liveVideoCurrentState: boolean
+const setliveVideoCurrentState = () => {
+  fs.access(streamPath + 'test.m3u8', (error) => {
+    if (error) {
+      liveVideoCurrentState = false
+    } else {
+      liveVideoCurrentState = true
+    }
+  })
+}
+setliveVideoCurrentState()
 module.exports = function (io: SocketIOClient.Server) {
   var numClients = 0
   io.on('connection', async (socket: SocketIOClient.Socket) => {
     console.log('connection')
+    io.emit('liveStreamState', liveVideoCurrentState)
+
     socket.on('connectedUsers', async (data: string) => {
       io.emit('connectedUsersResponse', numClients)
       if (data != 'admin') {
@@ -46,14 +59,19 @@ module.exports = function (io: SocketIOClient.Server) {
 
     //check if live stream file exists
     setInterval(() => {
-      console.log('setInterval')
       fs.access(streamPath + 'test.m3u8', (error) => {
         if (error) {
-          // console.log('live stream file been deleted')
-          io.emit('liveStreamState', false)
+          if (liveVideoCurrentState !== false) {
+            liveVideoCurrentState = false
+            io.emit('liveStreamState', liveVideoCurrentState)
+            console.log('live stream video file deleted')
+          }
         } else {
-          console.log('live stream file been created')
-          io.emit('liveStreamState', true)
+          if (liveVideoCurrentState !== true) {
+            liveVideoCurrentState = true
+            io.emit('liveStreamState', liveVideoCurrentState)
+            console.log('live stream video file created')
+          }
         }
       })
     }, 10000)
